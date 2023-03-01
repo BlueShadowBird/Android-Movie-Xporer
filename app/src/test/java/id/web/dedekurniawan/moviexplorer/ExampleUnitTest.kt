@@ -1,4 +1,4 @@
-package com.example.android_template
+package id.web.dedekurniawan.moviexplorer
 
 import org.junit.Test
 
