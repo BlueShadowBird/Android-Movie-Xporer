@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movie_image">Movie Image</string>
+    <string name="user_score">User\nScore</string>
+    <string name="not_scored">Not\nScored</string>
+    <string name="movie_year_value">(%1$s)</string>
+</resources>

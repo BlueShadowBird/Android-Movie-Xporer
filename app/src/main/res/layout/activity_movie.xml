@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.MovieActivity" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Movie.TagLine"
+            android:id="@+id/movie_tagline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Dummy Title" />
+
+        <ImageView
+            style="@style/Movie.Image"
+            android:id="@+id/movie_image"
+            android:contentDescription="@string/movie_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_tagline"
+            tools:src="@drawable/ic_default_image" />
+
+        <TextView
+            style="@style/Movie.Genre"
+            android:id="@+id/movie_genre_list"
+            tools:text="Action | Drama | Science Fiction"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_image"/>
+
+        <id.web.dedekurniawan.moviexplorer.core.ui.CircularProgressBar
+            android:id="@+id/movie_vote_average"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_genre_list"
+            tools:text="76%" />
+
+        <TextView
+            style="@style/Movie.UserScore"
+            android:id="@+id/user_score"
+            android:text="@string/user_score"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/movie_vote_average"
+            app:layout_constraintTop_toTopOf="@+id/movie_vote_average" />
+
+        <TextView
+            style="@style/Movie.Field.Label"
+            android:id="@+id/movie_status"
+            tools:text="Released"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_score" />
+
+        <TextView
+            style="@style/Movie.Field.Value"
+            android:id="@+id/movie_release_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_status"
+            tools:text="32/13/3000" />
+
+        <TextView
+            style="@style/Movie.Field.Label"
+            android:id="@+id/duration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_release_date"
+            android:text="@string/duration" />
+        <TextView
+            style="@style/Movie.Field.Value"
+            android:id="@+id/movie_duration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/duration"
+            tools:text="1 hour(s) 35 minute(s)" />
+
+        <TextView
+            style="@style/Movie.Field.Label"
+            android:id="@+id/budget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_vote_average"
+            android:text="@string/budget" />
+
+        <TextView
+            style="@style/Movie.Field.Value"
+            android:id="@+id/movie_budget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budget"
+            tools:text="$237,000,000.00" />
+
+        <TextView
+            style="@style/Movie.Field.Label"
+            android:id="@+id/revenue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_budget"
+            android:text="@string/revenue" />
+
+        <TextView
+            style="@style/Movie.Field.Value"
+            android:id="@+id/movie_revenue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/revenue"
+            tools:text="$2,920,357,254.00" />
+
+        <TextView
+            style="@style/Movie.Field.Label"
+            android:id="@+id/original_language"
+            android:text="@string/original_language"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_duration" />
+
+        <TextView
+            style="@style/Movie.Field.Value"
+            android:id="@+id/movie_original_language"
+            app:layout_constraintStart_toEndOf="@+id/original_language"
+            app:layout_constraintTop_toTopOf="@+id/original_language"
+            tools:text="English" />
+
+        <TextView
+            style="@style/Movie.Field.Overview"
+            android:id="@+id/movie_overview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/original_language"
+            tools:text="\tLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
