@@ -148,7 +148,6 @@ class CircularProgressBar(
      * Default is true.
      * @param roundedCorners true if you want rounded corners of false otherwise.
      */
-    @SuppressWarnings("Function \"useRoundedCorners\" is never used")
     fun useRoundedCorners(roundedCorners: Boolean) {
         mRoundedCorners = roundedCorners
         invalidate()
