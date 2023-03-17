@@ -84,8 +84,9 @@ class MovieActivity : AppCompatActivity() {
                 val hour = movie.runtime!!.div(60)
                 val minute = movie.runtime!!%60
 
-                "${if (hour > 0)resources.getQuantityString(R.plurals.duration_hour, hour) else ""} ${if (minute > 0)resources.getQuantityString(R.plurals.duration_minute, minute) else ""}"
+                "${if (hour > 0)resources.getQuantityString(R.plurals.duration_hour, hour, hour) else ""} ${if (minute > 0)resources.getQuantityString(R.plurals.duration_minute, minute, minute) else ""}"
             }else{
+                duration.visibility = View.GONE
                 movieDuration.visibility = View.GONE
                 null
             }
