@@ -69,17 +69,13 @@ class MovieActivity : AppCompatActivity() {
                 movieReleaseDate.text = movie.releaseDate.toString()
             }
 
-            movieGenreList.text = if(movie.genreList?.isNotEmpty() == true){
-                val genres = movie.genreList!!
-                val sb = StringBuffer(genres[0])
-                genres.slice(1 until genres.size).forEach {
-                    sb.append(" | ").append(it)
-                }
-                sb.toString()
+
+            if(movie.genreList?.isNotEmpty() == true){
+                movieGenre.setList(movie.genreList)
             }else{
-                movieGenreList.visibility = View.GONE
-                null
+                movieGenre.visibility = View.GONE
             }
+
             movieDuration.text = if ((movie.runtime ?: 0) > 0){
                 val hour = movie.runtime!!.div(60)
                 val minute = movie.runtime!!%60

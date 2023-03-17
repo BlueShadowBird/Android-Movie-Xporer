@@ -25,10 +25,9 @@
             app:layout_constraintTop_toBottomOf="@+id/movie_tagline"
             tools:src="@drawable/ic_default_image" />
 
-        <TextView
+        <id.web.dedekurniawan.moviexplorer.core.ui.HorizontalList
             style="@style/Movie.Genre"
-            android:id="@+id/movie_genre_list"
-            tools:text="Action | Drama | Science Fiction"
+            android:id="@+id/movie_genre"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_image"/>
 
@@ -39,7 +38,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_genre_list"
+            app:layout_constraintTop_toBottomOf="@+id/movie_genre"
             tools:text="76%" />
 
         <TextView
