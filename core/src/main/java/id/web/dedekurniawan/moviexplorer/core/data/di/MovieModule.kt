@@ -14,11 +14,15 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Properties
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
 
     single {
+        val properties = Properties()
+        properties.load(androidContext().assets.open("api.properties"))
+
         val certificatePinner = CertificatePinner.Builder()
 //            .add("steamcommunity.com", BuildConfig.STEAMCOMMUNITY_CERTIFICATE)
 //            .add("store.steampowered.com", BuildConfig.STEAMSTORE_CERTIFICATE)
@@ -33,7 +37,7 @@ val networkModule = module {
             .addInterceptor {
                 val original = it.request()
                 val url = original.url.newBuilder()
-                    .addQueryParameter("api_key", BuildConfig.API_KEY)
+                    .addQueryParameter("api_key", properties.getProperty("key"))
                     .build()
 
                 val request = original.newBuilder().url(url).build()
@@ -44,9 +48,12 @@ val networkModule = module {
             .build()
     }
     single {
+        val properties = Properties()
+        properties.load(androidContext().assets.open("api.properties"))
+
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BuildConfig.API_URL)
+            .baseUrl(properties.getProperty("url"))
             .client(get())
             .build().create(ApiService::class.java)
     }

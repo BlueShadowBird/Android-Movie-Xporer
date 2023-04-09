@@ -17,9 +17,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        buildConfigField("String", "API_KEY", '"5dea648cc634f8c805adebfef265cee4"')
-        buildConfigField("String", "API_URL", '"https://api.themoviedb.org/3/"')
     }
 
     buildTypes {
@@ -46,8 +43,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_ktx_version"
     kapt "androidx.room:room-compiler:$room_ktx_version"
     implementation "androidx.room:room-ktx:$room_ktx_version"
-
-    // Kotlin Extensions and Coroutines support for Room
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
