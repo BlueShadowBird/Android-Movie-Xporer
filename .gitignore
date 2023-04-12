@@ -86,3 +86,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# assets
+core/src/main/assets/*.properties
