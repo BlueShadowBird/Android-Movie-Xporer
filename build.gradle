@@ -10,11 +10,13 @@ buildscript {
     ext.retrofit_version = "2.9.0"
     ext.okhttp3_logging_interceptor_version = "4.10.0"
     ext.glide_version = "4.15.0"
-    ext.lifecycle_version = "2.6.0"
+    ext.lifecycle_version = "2.6.1"
     ext.room_ktx_version = "2.5.1"
     ext.material_version = "1.8.0"
     ext.constraintlayout_version = "2.1.4"
     ext.paging_version = "3.1.1"
+
+    ext.splashscreen_version = "1.0.0"
 }
 
 plugins {
