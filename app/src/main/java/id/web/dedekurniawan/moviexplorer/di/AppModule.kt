@@ -9,7 +9,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory<MovieUseCase> { MovieInteractor(get()) }
+    factory<MovieUseCase> { MovieInteractor(get(), get()) }
 }
 
 val adapterModule = module {

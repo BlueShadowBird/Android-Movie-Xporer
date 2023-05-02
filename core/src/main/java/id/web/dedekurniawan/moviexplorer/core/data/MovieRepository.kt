@@ -13,10 +13,10 @@ class MovieRepository(
     private val apiService: ApiService,
     private val dao: MovieDao
 ): IMovieRepository {
-    override suspend fun searchMovie(query: String): Flow<Result<List<Movie>>> = flow {
+    override suspend fun searchMovie(query: String, includeAdult: Boolean): Flow<Result<List<Movie>>> = flow {
         emit(Result.Loading())
         try {
-            val movieResponse = apiService.searchMovie(query)
+            val movieResponse = apiService.searchMovie(query, includeAdult)
             if((movieResponse.totalResults ?: 0) > 0){
                 emit(Result.Success(movieResponse.results!!.map { it!!.toDomainModel() }))
             }else{

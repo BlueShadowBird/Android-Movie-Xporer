@@ -41,6 +41,9 @@ dependencies {
 
     // Room database
     implementation "androidx.room:room-runtime:$room_ktx_version"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'com.google.android.material:material:1.8.0'
     kapt "androidx.room:room-compiler:$room_ktx_version"
     implementation "androidx.room:room-ktx:$room_ktx_version"
 
@@ -51,4 +54,7 @@ dependencies {
 
     //glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    //biometric
+   implementation "androidx.biometric:biometric-ktx:1.2.0-alpha05"
 }

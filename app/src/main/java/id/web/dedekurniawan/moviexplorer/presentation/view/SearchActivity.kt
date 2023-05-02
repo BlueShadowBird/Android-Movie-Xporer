@@ -4,13 +4,17 @@ import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.getSystemService
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import id.web.dedekurniawan.moviexplorer.R
+import id.web.dedekurniawan.moviexplorer.core.SettingsActivity
 import id.web.dedekurniawan.moviexplorer.databinding.ActivitySearchBinding
 import id.web.dedekurniawan.moviexplorer.core.adapter.MovieAdapter
+import id.web.dedekurniawan.moviexplorer.core.utils.alert
 import id.web.dedekurniawan.moviexplorer.presentation.viewmodel.SearchViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,8 +36,18 @@ class SearchActivity : AppCompatActivity() {
         }
 
         viewModel.searchResult.observe(this){
-            if (it is id.web.dedekurniawan.moviexplorer.core.data.remote.Result.Success){
-                movieAdapter.submitList(it.data)
+            when(it){
+                is id.web.dedekurniawan.moviexplorer.core.data.remote.Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is id.web.dedekurniawan.moviexplorer.core.data.remote.Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    movieAdapter.submitList(it.data)
+                }
+                is id.web.dedekurniawan.moviexplorer.core.data.remote.Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    alert(binding.root, TAG, it.message.toString())
+                }
             }
         }
 
@@ -41,8 +55,15 @@ class SearchActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.app_bar_setting -> startActivity(Intent(this, SettingsActivity::class.java))
+        }
+        return true
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.search_menu, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
 
         val searchManager = getSystemService<SearchManager>()
         val searchView = menu.findItem(R.id.app_bar_search).actionView as SearchView
@@ -63,5 +84,9 @@ class SearchActivity : AppCompatActivity() {
         })
 
         return true
+    }
+
+    companion object{
+        private const val TAG = "SearchActivity"
     }
 }

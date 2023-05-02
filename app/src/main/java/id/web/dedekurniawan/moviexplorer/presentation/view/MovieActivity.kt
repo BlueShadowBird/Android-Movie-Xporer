@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import id.web.dedekurniawan.moviexplorer.R
 import id.web.dedekurniawan.moviexplorer.databinding.ActivityMovieBinding
 import id.web.dedekurniawan.moviexplorer.core.domain.model.Movie
@@ -24,9 +25,11 @@ class MovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         binding = ActivityMovieBinding.inflate(layoutInflater)
+
+        installSplashScreen()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(binding.root)
 
         viewModel.movie.observe(this){ result ->

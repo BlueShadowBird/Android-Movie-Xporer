@@ -16,7 +16,7 @@ buildscript {
     ext.constraintlayout_version = "2.1.4"
     ext.paging_version = "3.1.1"
 
-    ext.splashscreen_version = "1.0.0"
+    ext.splashscreen_version = "1.0.1"
 }
 
 plugins {

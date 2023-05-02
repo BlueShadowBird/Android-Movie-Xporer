@@ -11,6 +11,7 @@ interface ApiService {
     @GET("search/movie")
     suspend fun searchMovie(
         @Query("query") query: String,
+        @Query("include_adult") includeAdult: Boolean = false,
         @Query("sort_by") sort: Sort = Sort.Vote.DESCENDING
     ): MovieSearchResponse
 

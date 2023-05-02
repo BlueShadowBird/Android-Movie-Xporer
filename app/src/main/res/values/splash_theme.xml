@@ -8,7 +8,7 @@
         <item name="postSplashScreenTheme">@style/Theme.MovieXplorer</item>
 
         <!-- Status bar and Nav bar configs -->
-        <item name="android:statusBarColor">#F3EFEC</item>
+        <item name="android:statusBarColor">#C0C0C0</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>

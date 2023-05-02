@@ -2,21 +2,22 @@ package id.web.dedekurniawan.moviexplorer.core.domain.usecase
 
 import id.web.dedekurniawan.moviexplorer.core.domain.model.Movie
 import id.web.dedekurniawan.moviexplorer.core.domain.repository.IMovieRepository
+import id.web.dedekurniawan.moviexplorer.core.domain.repository.ISettingRepository
 
-class MovieInteractor(private val repository: IMovieRepository): MovieUseCase {
-    override suspend fun searchMovie(query: String) = repository.searchMovie(query)
+class MovieInteractor(private val movieRepository: IMovieRepository, private val settingRepository: ISettingRepository): MovieUseCase {
+    override suspend fun searchMovie(query: String) = movieRepository.searchMovie(query, settingRepository.getIncludeAdultSetting())
 
-    override suspend fun retrieveMovie(movieId: Int) = repository.retrieveMovie(movieId)
+    override suspend fun retrieveMovie(movieId: Int) = movieRepository.retrieveMovie(movieId)
 
     override fun saveGameToFavorite(movie: Movie) {
-        repository.saveGameToFavorite(movie)
+        movieRepository.saveGameToFavorite(movie)
     }
 
     override fun deleteFavoriteGame(movieId: String) {
-        repository.deleteFavoriteGame(movieId)
+        movieRepository.deleteFavoriteGame(movieId)
     }
 
-    override fun getAllFavorite() = repository.getAllFavorite()
+    override fun getAllFavorite() = movieRepository.getAllFavorite()
 
-    override fun isFavorite(movieId: String) = repository.isFavorite(movieId)
+    override fun isFavorite(movieId: String) = movieRepository.isFavorite(movieId)
 }

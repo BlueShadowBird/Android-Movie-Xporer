@@ -1,8 +1,10 @@
 package id.web.dedekurniawan.moviexplorer.core.utils
 
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatDelegate
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import id.web.dedekurniawan.moviexplorer.core.R
@@ -27,4 +29,13 @@ fun reviewScoreToColor(score: Int) = Color.argb(
 
 fun alert(view: View, message: String){
     Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+}
+
+fun changeTheme(theme: Int?){
+    AppCompatDelegate.setDefaultNightMode(theme ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+}
+
+fun alert(view: View, tag: String?, message: String){
+    alert(view, message)
+    Log.e(tag, message)
 }

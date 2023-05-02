@@ -1,6 +1,8 @@
 package id.web.dedekurniawan.moviexplorer
 
+import androidx.preference.PreferenceManager
 import id.web.dedekurniawan.moviexplorer.core.data.di.*
+import id.web.dedekurniawan.moviexplorer.core.utils.changeTheme
 import id.web.dedekurniawan.moviexplorer.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -22,5 +24,7 @@ class MovieXplorerApplication: com.google.android.play.core.splitcompat.SplitCom
             )
         }
 
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
+        changeTheme(sharedPref.getString("theme", null)?.toInt())
     }
 }

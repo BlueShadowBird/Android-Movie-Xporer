@@ -4,9 +4,11 @@ package id.web.dedekurniawan.moviexplorer.core.data.di
 import androidx.room.Room
 import id.web.dedekurniawan.moviexplorer.core.BuildConfig
 import id.web.dedekurniawan.moviexplorer.core.data.MovieRepository
+import id.web.dedekurniawan.moviexplorer.core.data.SettingRepository
 import id.web.dedekurniawan.moviexplorer.core.data.local.room.MovieDatabase
 import id.web.dedekurniawan.moviexplorer.core.data.remote.retrofit.ApiService
 import id.web.dedekurniawan.moviexplorer.core.domain.repository.IMovieRepository
+import id.web.dedekurniawan.moviexplorer.core.domain.repository.ISettingRepository
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -71,4 +73,5 @@ val repositoryModule = module {
             .build()
     }
     single<IMovieRepository> { MovieRepository(get(), get()) }
+    single<ISettingRepository> { SettingRepository(get()) }
 }
