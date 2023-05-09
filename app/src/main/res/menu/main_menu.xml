@@ -14,6 +14,12 @@
         android:id="@+id/app_bar_setting"
         android:icon="@drawable/setting_24"
         android:title="@string/setting"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/app_bar_about"
+        android:icon="@drawable/ic_splash"
+        android:title="@string/about"
+        app:showAsAction="never" />
 
 </menu>

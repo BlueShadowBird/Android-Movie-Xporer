@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/About.Layout"
+    tools:context=".AboutActivity">
+
+    <ImageView
+        android:id="@+id/movie_xplorer"
+        style="@style/About.MovieXplorer"
+        android:src="@drawable/mx_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/movie_xplorer_logo" />
+
+    <TextView
+        android:id="@+id/tmdb_attribution"
+        style="@style/About.TMDBAttribution"
+        android:text="@string/tmdb_attribution"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movie_xplorer" />
+
+    <ImageView
+        style="@style/About.TMDBImage"
+        android:src="@drawable/tmdb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tmdb_attribution"
+        android:contentDescription="@string/tmdb_logo" />
+
+    <TextView
+        style="@style/About.PrivacyPolicy"
+        android:id="@+id/read_privacy_policy"
+        android:text="@string/read_privacy_policy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/privacy_policy_link"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        style="@style/About.PrivacyPolicy.Link"
+        android:id="@+id/privacy_policy_link"
+        android:text="@string/privacy_policy_link"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/read_privacy_policy" />
+</androidx.constraintlayout.widget.ConstraintLayout>

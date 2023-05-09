@@ -18,4 +18,10 @@
     <string name="duration">Duration</string>
     <string name="revenue">Revenue</string>
     <string name="setting">Setting</string>
+    <string name="about">About</string>
+    <string name="tmdb_attribution">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+    <string name="read_privacy_policy">Read Application Privacy Policy </string>
+    <string name="privacy_policy_link">Here</string>
+    <string name="tmdb_logo">TMDB Logo</string>
+    <string name="movie_xplorer_logo">Movie Xplorer Logo</string>
 </resources>
