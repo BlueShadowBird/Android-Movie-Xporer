@@ -4,6 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import id.web.dedekurniawan.moviexplorer.databinding.ActivityAboutBinding
@@ -19,9 +23,22 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.privacyPolicyLink.setOnClickListener(this)
+        val spannableString = SpannableString(getString(R.string.read_privacy_policy))
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.PRIVACY_POLICY_URL)))
+            }
+        }
+        val start = spannableString.indexOf(getString(R.string.clickable_privacy_policy_text))
+        val length = getString(R.string.clickable_privacy_policy_text).length
+        spannableString.setSpan(clickableSpan, start, start + length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.readPrivacyPolicy.text = spannableString
+        binding.readPrivacyPolicy.movementMethod = LinkMovementMethod.getInstance()
+
+        binding.backAbout.setOnClickListener(this)
+
+        supportActionBar?.hide()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -30,6 +47,8 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.PRIVACY_POLICY_URL)))
+        when(view.id){
+            R.id.back_about -> finish()
+        }
     }
 }

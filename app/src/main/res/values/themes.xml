@@ -7,11 +7,12 @@
     <style name="About.Layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:padding">64dp</item>
+        <item name="android:padding">16dp</item>
         <item name="android:background">#0d253f</item>
     </style>
 
     <style name="About.MovieXplorer">
+        <item name="android:layout_margin">64dp</item>
         <item name="android:background">#0d253f</item>
     </style>
 
