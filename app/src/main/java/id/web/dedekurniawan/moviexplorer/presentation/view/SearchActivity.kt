@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.getSystemService
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import id.web.dedekurniawan.moviexplorer.AboutActivity
 import id.web.dedekurniawan.moviexplorer.R
 import id.web.dedekurniawan.moviexplorer.core.SettingsActivity
 import id.web.dedekurniawan.moviexplorer.databinding.ActivitySearchBinding
