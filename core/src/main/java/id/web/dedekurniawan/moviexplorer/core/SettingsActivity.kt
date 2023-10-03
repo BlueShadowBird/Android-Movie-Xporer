@@ -107,7 +107,7 @@ class SettingsActivity : AppCompatActivity() {
                     AlertDialog.Builder(requireContext())
                         .setPositiveButton(getString(R.string.yes), dialogClickListener)
                         .setNegativeButton(getString(R.string.no), dialogClickListener)
-                        .setView(requireActivity().layoutInflater.inflate(R.layout.adult_only_dialog, view as ViewGroup))
+                        .setView(requireActivity().layoutInflater.inflate(R.layout.adult_only_dialog, view as ViewGroup, false))
                         .show()
 
                     return@setOnPreferenceChangeListener false  // include adult is checked, change to true only On Authentication Succeeded

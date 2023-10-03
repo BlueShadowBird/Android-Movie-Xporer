@@ -5,7 +5,7 @@
     <string name="not_scored">Not\nScored</string>
     <string name="movie_year_value">(%1$s)</string>
 
-    <string name="default_no">No</string>
+    <string name="default_no">-1</string>
 
     <string name="title_activity_settings">Settings</string>
 
