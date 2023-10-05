@@ -2,7 +2,6 @@ package id.web.dedekurniawan.moviexplorer.core.ui
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
@@ -18,7 +17,7 @@ class HorizontalList(
     private val paint = Paint().apply {
         isAntiAlias = true
         textSize = this@HorizontalList.textSize
-        color = Color.BLACK
+        color = textColors.defaultColor
         textAlign = Paint.Align.LEFT
     }
     private var list: List<String>? = null
