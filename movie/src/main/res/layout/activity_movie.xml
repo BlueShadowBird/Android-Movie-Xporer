@@ -29,7 +29,8 @@
             style="@style/Movie.Genre"
             android:id="@+id/movie_genre"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_image"/>
+            app:layout_constraintTop_toBottomOf="@id/movie_image"
+            tools:text="Genre"/>
 
         <id.web.dedekurniawan.moviexplorer.core.ui.CircularProgressBar
             android:id="@+id/movie_vote_average"
