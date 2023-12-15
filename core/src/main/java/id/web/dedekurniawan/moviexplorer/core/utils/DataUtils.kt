@@ -4,8 +4,6 @@ import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
-import id.web.dedekurniawan.moviexplorer.core.data.remote.response.MovieResponse
-import id.web.dedekurniawan.moviexplorer.core.domain.model.Movie
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -22,8 +20,8 @@ private val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
 class Date : Parcelable {
     var year: Int = 0
-    var month: Int = 0
-    var day: Int = 0
+    private var month: Int = 0
+    private var day: Int = 0
 
     constructor(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -82,31 +80,3 @@ class Date : Parcelable {
         override fun newArray(size: Int): Array<Date?> = arrayOfNulls(size)
     }
 }
-
-fun MovieResponse.toDomainModel() = Movie(
-    id,
-    title,
-    originalTitle,
-    tagline,
-    overview,
-    homepage,
-    backdropPath?:posterPath,
-    voteAverage,
-    voteCount,
-    popularity,
-    releaseDate?.let {
-        if (it.isNotEmpty()){
-            Date().apply {
-                parseDate(it)
-            }
-        } else null
-    },
-    originalLanguage,
-    status,
-    imdbId,
-    budget,
-    revenue,
-    runtime,
-    genres?.map { it?.name.toString() }
-)
-

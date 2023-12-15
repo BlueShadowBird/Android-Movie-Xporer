@@ -13,6 +13,7 @@ import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import id.web.dedekurniawan.moviexplorer.core.utils.KEY_ACTOR_MODULE
 import id.web.dedekurniawan.moviexplorer.core.utils.KEY_INCLUDE_ADULT
 import id.web.dedekurniawan.moviexplorer.core.utils.KEY_THEME
 import id.web.dedekurniawan.moviexplorer.core.utils.alert
@@ -40,9 +41,13 @@ class SettingsActivity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
         private lateinit var includeAdultSwitch: SwitchPreferenceCompat
+        private lateinit var actorModuleSwitch: SwitchPreferenceCompat
         override fun onResume() {
             super.onResume()
             preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
+            preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener { sharedPreferences, s ->
+
+            }
         }
 
         override fun onPause() {
@@ -105,15 +110,39 @@ class SettingsActivity : AppCompatActivity() {
                         }
 
                     AlertDialog.Builder(requireContext())
-                        .setPositiveButton(getString(R.string.yes), dialogClickListener)
-                        .setNegativeButton(getString(R.string.no), dialogClickListener)
-                        .setView(requireActivity().layoutInflater.inflate(R.layout.adult_only_dialog, view as ViewGroup))
+                        .setPositiveButton(getString(R.string.include_adult_yes), dialogClickListener)
+                        .setNegativeButton(getString(R.string.include_adult_no), dialogClickListener)
+                        .setView(requireActivity().layoutInflater.inflate(R.layout.adult_only_dialog, view as ViewGroup, false))
                         .show()
 
                     return@setOnPreferenceChangeListener false  // include adult is checked, change to true only On Authentication Succeeded
                 }
 
                 return@setOnPreferenceChangeListener true   // include adult is unchecked, update new value
+            }
+
+            actorModuleSwitch = findPreference(KEY_ACTOR_MODULE)!!
+            actorModuleSwitch.setOnPreferenceChangeListener { preference, newValue ->
+                if(newValue == true){
+                    val dialogClickListener: DialogInterface.OnClickListener =
+                        DialogInterface.OnClickListener { _, which ->
+                            when (which) {
+                                DialogInterface.BUTTON_POSITIVE -> {
+                                    (preference as SwitchPreferenceCompat).isChecked = true
+                                }
+                            }
+                        }
+
+                    AlertDialog.Builder(requireContext())
+                        .setPositiveButton(getString(R.string.yes), dialogClickListener)
+                        .setNegativeButton(getString(R.string.no), dialogClickListener)
+                        .setMessage(R.string.actor_module_dialog_message)
+                        .show()
+
+                    return@setOnPreferenceChangeListener false  // include adult is checked, change to true only On Authentication Succeeded
+                }
+
+                return@setOnPreferenceChangeListener false   // include adult is unchecked, update new value
             }
         }
 

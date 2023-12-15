@@ -6,5 +6,5 @@ import id.web.dedekurniawan.moviexplorer.core.data.local.entity.FavoriteMovieEnt
 
 @Database(entities = [FavoriteMovieEntity::class], version = 1, exportSchema = false)
 abstract class MovieDatabase: RoomDatabase() {
-    abstract fun getDao(): MovieDao
+    abstract fun getMovieDao(): MovieDao
 }

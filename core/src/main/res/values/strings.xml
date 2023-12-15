@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <string name="movie_image">Movie Image</string>
     <string name="user_score">User\nScore</string>
     <string name="not_scored">Not\nScored</string>
     <string name="movie_year_value">(%1$s)</string>
 
-    <string name="default_no">No</string>
+    <string name="default_no">-1</string>
 
     <string name="title_activity_settings">Settings</string>
 
     <!-- Setting Preferences -->
     <string name="header_title_appearance">Appearance</string>
-    <string name="title_theme">Theme</string>
-
-
-    <string name="header_title_content">Content</string>
-    <string name="title_include_adult">Include Adult</string>
-
-    <!-- Include Adult Preferences -->
-    <string name="include_adult_on">Movie with adult content will included in search result</string>
-    <string name="include_adult_off">Movie with adult content will excluded in search result</string>
-    <string name="adult_only_confirmation">This app will contain content suitable only for users aged 18 and over. Please confirm that you are at least 18 years old by clicking the \"I am 18+\" button below.</string>
-    <string name="yes">I am 18+</string>
-    <string name="no">No</string>
-
 
     <!-- Theme Preferences -->
+    <string name="title_theme">Theme</string>
     <string name="system">System</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>
+
+
+    <!-- Setting Content -->
+    <string name="header_title_content">Content</string>
+
+    <!-- Include Adult Preferences -->
+    <string name="title_include_adult">Include Adult</string>
+    <string name="include_adult_on">Movie with adult content will included in search result</string>
+    <string name="include_adult_off">Movie with adult content will excluded in search result</string>
+    <string name="include_adult_confirmation">This app will contain content suitable only for users aged 18 and over. Please confirm that you are at least 18 years old by clicking the \"I am 18+\" button below.</string>
+    <string name="include_adult_yes">I am 18+</string>
+    <string name="include_adult_no">No</string>
+
+    <!-- Setting Module -->
+    <string name="header_title_module">Module</string>
+
+    <!-- Actor Preferences -->
+    <string name="title_actor_module">Actor</string>
+    <string name="actor_module_on">Actor Module Is Installed</string>
+    <string name="actor_module_off">Actor Module Is Not Installed</string>
+    <string name="actor_module_dialog_message">Are you sure to install Actor Module</string>
+
     <string name="esrb_18_plus">ESRB 18+</string>
+    <string name="icon">Icon</string>
 </resources>

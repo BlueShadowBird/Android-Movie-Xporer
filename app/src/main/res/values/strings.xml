@@ -1,22 +1,9 @@
 <resources>
     <string name="app_name">Movie Xplorer</string>
-    <string name="search_hint">Type Your Movie Title</string>
+
+    <string name="search_hint">Type Your Search</string>
     <string name="search">Search</string>
-    <string name="original_language">Original Language:</string>
-    <plurals name="duration_minute">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
-    </plurals>
-    <plurals name="duration_hour">
-        <item quantity="one">%1$d hour</item>
-        <item quantity="other">%1$d hours</item>
-    </plurals>
-    <string name="dolar_amount_format">$%1$s</string>
-    <string name="user_score">User\nScore</string>
-    <string name="not_scored">Not\nScored</string>
-    <string name="budget">Budget</string>
-    <string name="duration">Duration</string>
-    <string name="revenue">Revenue</string>
+
     <string name="setting">Setting</string>
     <string name="about">About</string>
     <string name="tmdb_attribution">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
@@ -25,4 +12,5 @@
     <string name="tmdb_logo">TMDB Logo</string>
     <string name="movie_xplorer_logo">Movie Xplorer Logo</string>
     <string name="back">Back</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

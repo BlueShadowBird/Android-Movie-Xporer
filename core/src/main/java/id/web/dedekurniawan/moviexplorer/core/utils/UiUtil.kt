@@ -8,16 +8,17 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import id.web.dedekurniawan.moviexplorer.core.R
-import id.web.dedekurniawan.moviexplorer.core.domain.model.Movie
 import kotlin.math.min
 
-fun loadGLide(movieImage: ImageView, movie: Movie){
+fun loadGLide(movieImage: ImageView, moviePoster: String?){
     Glide.with(movieImage)
-        .load(if(movie.posterPath.isNullOrEmpty()){
-            R.drawable.ic_default_image
-        }else{
-            "https://image.tmdb.org/t/p/w500${movie.posterPath}"
-        })
+        .load(
+            if(moviePoster.isNullOrEmpty()){
+                R.drawable.ic_default_image
+            }else{
+                "https://image.tmdb.org/t/p/w500${moviePoster}"
+            }
+        )
         .into(movieImage)
 }
 

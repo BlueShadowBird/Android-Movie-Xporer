@@ -17,4 +17,12 @@
             app:summaryOff="@string/include_adult_off"
             app:summaryOn="@string/include_adult_on" />
     </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/header_title_module">
+        <SwitchPreferenceCompat
+            app:key="actor_module"
+            app:title="@string/title_actor_module"
+            app:summaryOff="@string/actor_module_off"
+            app:summaryOn="@string/actor_module_on" />
+    </PreferenceCategory>
 </PreferenceScreen>
