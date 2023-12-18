@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.app.presentation.view
+package id.web.dedekurniawan.moviexplorer.presentation.view
 
 import android.app.SearchManager
 import android.content.Intent
@@ -16,13 +16,13 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
-import id.web.dedekurniawan.moviexplorer.app.ModuleEngineHandler
-import id.web.dedekurniawan.moviexplorer.app.R
-import id.web.dedekurniawan.moviexplorer.app.databinding.FrameContainerBinding
-import id.web.dedekurniawan.moviexplorer.app.presentation.viewmodel.QuicksearchVIewModel
+import id.web.dedekurniawan.moviexplorer.ModuleEngineHandler
+import id.web.dedekurniawan.moviexplorer.R
 import id.web.dedekurniawan.moviexplorer.core.SettingsActivity
 import id.web.dedekurniawan.moviexplorer.core.data.remote.Result
 import id.web.dedekurniawan.moviexplorer.core.domain.ModuleElement
+import id.web.dedekurniawan.moviexplorer.databinding.FrameContainerBinding
+import id.web.dedekurniawan.moviexplorer.presentation.viewmodel.QuicksearchVIewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

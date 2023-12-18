@@ -7,15 +7,15 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    namespace 'id.web.dedekurniawan.moviexplorer.app'
+    namespace 'id.web.dedekurniawan.moviexplorer'
     compileSdk 33
 
     defaultConfig {
-        applicationId "id.web.dedekurniawan.moviexplorer.app"
+        applicationId "id.web.dedekurniawan.moviexplorer"
         minSdk 23
         targetSdk 33
-        versionCode 2
-        versionName "1.0"
+        versionCode 7
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

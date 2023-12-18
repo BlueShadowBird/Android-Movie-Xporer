@@ -1,7 +1,7 @@
-package id.web.dedekurniawan.moviexplorer.app
+package id.web.dedekurniawan.moviexplorer
 
 import androidx.preference.PreferenceManager
-import id.web.dedekurniawan.moviexplorer.app.di.appKoinModule
+import id.web.dedekurniawan.moviexplorer.di.appKoinModule
 import id.web.dedekurniawan.moviexplorer.core.data.di.*
 import id.web.dedekurniawan.moviexplorer.core.utils.changeTheme
 import id.web.dedekurniawan.moviexplorer.movie.data.di.movieKoinModule

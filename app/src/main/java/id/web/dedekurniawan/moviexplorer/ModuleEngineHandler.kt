@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.app
+package id.web.dedekurniawan.moviexplorer
 
 import android.content.Context
 import id.web.dedekurniawan.moviexplorer.core.domain.ModuleElement

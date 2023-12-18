@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.app.presentation.viewmodel
+package id.web.dedekurniawan.moviexplorer.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.app
+package id.web.dedekurniawan.moviexplorer
 
 import org.junit.Test
 

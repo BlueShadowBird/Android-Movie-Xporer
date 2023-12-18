@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.app.presentation.view
+package id.web.dedekurniawan.moviexplorer.presentation.view
 
 import android.content.Intent
 import android.net.Uri
@@ -10,9 +10,9 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import id.web.dedekurniawan.moviexplorer.app.BuildConfig
-import id.web.dedekurniawan.moviexplorer.app.R
-import id.web.dedekurniawan.moviexplorer.app.databinding.ActivityAboutBinding
+import id.web.dedekurniawan.moviexplorer.BuildConfig
+import id.web.dedekurniawan.moviexplorer.R
+import id.web.dedekurniawan.moviexplorer.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityAboutBinding

@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.app.presentation.view
+package id.web.dedekurniawan.moviexplorer.presentation.view
 
 import android.os.Bundle
 import android.view.Menu

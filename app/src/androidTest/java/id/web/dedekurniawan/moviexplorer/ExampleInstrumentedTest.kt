@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.app
+package id.web.dedekurniawan.moviexplorer
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
