@@ -13,7 +13,6 @@ val appKoinModule = module {
             get()
         ).apply {
             initMovieModule(
-                get(),
                 get()
             )
         }

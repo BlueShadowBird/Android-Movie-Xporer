@@ -33,7 +33,7 @@ fun MovieResponse.toDomainModel() = Movie(
 )
 
 fun MovieResponse.toQuickSearchModel() = MovieQuickSearchModel(
-    imdbId.toString(),
+    id.toString(),
     originalTitle,
     tagline.toString()
 )
