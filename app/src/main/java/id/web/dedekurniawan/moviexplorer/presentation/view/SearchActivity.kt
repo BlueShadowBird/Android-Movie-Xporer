@@ -9,7 +9,7 @@ class SearchActivity: AppMenuCompatActivity() {
 
         moduleElement = moduleEngineHandler.moduleEngine.moduleElementList[intent.getStringExtra(EXTRA_MODULE_NAME)]!!
 
-        val fragment = moduleElement.dashboardModule.createFragment()
+        val fragment = moduleElement.createFragment()
         val arguments = Bundle()
         arguments.putString(ModuleListFragment.SEARCH_QUERY_ARGUMENT, intent.getStringExtra(EXTRA_SEARCH_QUERY))
         fragment.arguments = arguments

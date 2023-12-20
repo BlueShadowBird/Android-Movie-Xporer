@@ -4,7 +4,6 @@ package id.web.dedekurniawan.moviexplorer.movie.data.di
 import id.web.dedekurniawan.moviexplorer.movie.adapter.MovieAdapter
 import id.web.dedekurniawan.moviexplorer.movie.data.MovieRepository
 import id.web.dedekurniawan.moviexplorer.movie.data.remote.MovieApiService
-import id.web.dedekurniawan.moviexplorer.movie.domain.MovieDashboardModule
 import id.web.dedekurniawan.moviexplorer.movie.domain.repository.IMovieRepository
 import id.web.dedekurniawan.moviexplorer.movie.domain.usecase.MovieInteractor
 import id.web.dedekurniawan.moviexplorer.movie.domain.usecase.MovieUseCase
@@ -40,10 +39,6 @@ val movieKoinModule = module {
     }
 
     factory { MovieAdapter() }
-
-    single {
-        MovieDashboardModule()
-    }
 
     viewModel { MovieViewModel(get()) }
 

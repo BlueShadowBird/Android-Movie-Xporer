@@ -23,21 +23,20 @@ class MainActivity : AppMenuCompatActivity() {
         if(moduleEngine.moduleElementList.size>1){
             val bottomNavigationMenu = bottomNavigation.menu
             moduleEngine.moduleElementList.values.forEach { moduleElement ->
-                val dashboardModule = moduleElement.dashboardModule
-                bottomNavigationMenu.add(Menu.NONE, dashboardModule.itemMenuId, Menu.NONE, moduleElement.name).setIcon(dashboardModule.itemMenuId)
-                dashboardFragmentMap[dashboardModule.itemMenuId] = moduleElement
+                bottomNavigationMenu.add(Menu.NONE, moduleElement.itemMenuId, Menu.NONE, moduleElement.name).setIcon(moduleElement.itemMenuId)
+                dashboardFragmentMap[moduleElement.itemMenuId] = moduleElement
             }
 
             binding.bottomNavigation.setOnItemReselectedListener { menuItem ->
                 moduleElement = dashboardFragmentMap[menuItem.itemId]!!
-                replaceFragment(moduleElement.dashboardModule.createFragment())
+                replaceFragment(moduleElement.createFragment())
             }
 
             bottomNavigation.selectedItemId = bottomNavigationMenu[0].itemId
         }else{
             bottomNavigation.visibility = View.GONE
             moduleElement = moduleEngine.moduleElementList.values.first()
-            replaceFragment(moduleElement.dashboardModule.createFragment())
+            replaceFragment(moduleElement.createFragment())
         }
     }
 }

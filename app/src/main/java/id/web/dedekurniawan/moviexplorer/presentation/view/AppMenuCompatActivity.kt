@@ -98,8 +98,8 @@ abstract class AppMenuCompatActivity : AppCompatActivity() {
             override fun onSuggestionClick(position: Int): Boolean {
                 val cursor = suggestionAdapter.cursor
                 cursor.moveToPosition(position)
-                val query = cursor.getString(cursor.getColumnIndexOrThrow(SearchManager.SUGGEST_COLUMN_TEXT_1))
-                searchView.setQuery(query, true)
+                val itemId = cursor.getString(cursor.getColumnIndexOrThrow(SearchManager.SUGGEST_COLUMN_TEXT_2))
+                moduleElement.startActivity(this@AppMenuCompatActivity, itemId.toInt())
                 return true
             }
         })
@@ -125,12 +125,12 @@ abstract class AppMenuCompatActivity : AppCompatActivity() {
                 }
                 is Result.Success -> {
 
-                    val cursor = MatrixCursor(arrayOf("_id", SearchManager.SUGGEST_COLUMN_TEXT_1))
+                    val cursor = MatrixCursor(arrayOf("_id", SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_TEXT_2))
 
                     // Add data to the cursor
                     result.data?.forEachIndexed { index, item ->
                         // Create a row in the cursor with the data
-                        cursor.addRow(arrayOf(index, item.name))
+                        cursor.addRow(arrayOf(index, item.name, item.id))
                     }
 
                     // Close the cursor when done
