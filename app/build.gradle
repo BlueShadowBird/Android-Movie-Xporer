@@ -8,12 +8,12 @@ apply from: '../shared_dependencies.gradle'
 
 android {
     namespace 'id.web.dedekurniawan.moviexplorer'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "id.web.dedekurniawan.moviexplorer"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 7
         versionName "1.1"
 
@@ -53,11 +53,11 @@ dependencies {
 
     implementation "androidx.preference:preference-ktx:1.2.1"
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'
 }
