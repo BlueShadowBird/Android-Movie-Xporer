@@ -20,9 +20,9 @@
 
     <PreferenceCategory app:title="@string/header_title_module">
         <SwitchPreferenceCompat
-            app:key="actor_module"
-            app:title="@string/title_actor_module"
-            app:summaryOff="@string/actor_module_off"
-            app:summaryOn="@string/actor_module_on" />
+            app:key="person"
+            app:title="@string/title_person_module"
+            app:summaryOff="@string/person_module_off"
+            app:summaryOn="@string/person_module_on" />
     </PreferenceCategory>
 </PreferenceScreen>

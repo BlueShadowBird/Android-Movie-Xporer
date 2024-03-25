@@ -3,7 +3,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <string name="movie_image">Movie Image</string>
     <string name="user_score">User\nScore</string>
     <string name="not_scored">Not\nScored</string>
     <string name="movie_year_value">(%1$s)</string>
@@ -36,12 +35,24 @@
     <!-- Setting Module -->
     <string name="header_title_module">Module</string>
 
-    <!-- Actor Preferences -->
-    <string name="title_actor_module">Actor</string>
-    <string name="actor_module_on">Actor Module Is Installed</string>
-    <string name="actor_module_off">Actor Module Is Not Installed</string>
-    <string name="actor_module_dialog_message">Are you sure to install Actor Module</string>
+    <!-- Person Preferences -->
+    <string name="title_person_module">Person</string>
+    <string name="person_module_on">Person Module Is Installed</string>
+    <string name="person_module_off">Person Module Is Not Installed</string>
+    <string name="person_module_dialog_message">Are you sure to install Person Module</string>
 
     <string name="esrb_18_plus">ESRB 18+</string>
     <string name="icon">Icon</string>
+    <string name="back">back</string>
+
+    <string name="splitinstall_state_unknown">Error with unknows reason</string>
+    <string name="splitinstall_state_pending">Initializing</string>
+    <string name="splitinstall_state_downloading">Downloading (%1$.2f%%)</string>
+    <string name="splitinstall_state_download">Downloaded</string>
+    <string name="splitinstall_state_installing">Installing</string>
+    <string name="splitinstall_state_installed">Module %1$s Installed</string>
+    <string name="splitinstall_state_failed">Installation failed</string>
+    <string name="splitinstall_state_canceling">Canceling</string>
+    <string name="splitinstall_state_canceled">Installation canceled</string>
+    <string name="splitinstall_state_confirmation_fail">Confirmation fail</string>
 </resources>

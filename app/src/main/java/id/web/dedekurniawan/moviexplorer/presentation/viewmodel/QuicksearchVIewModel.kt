@@ -26,8 +26,8 @@ class QuicksearchVIewModel(private val moduleEngine: ModuleEngine): ViewModel() 
         .filter {
             it.second.trim().length > 2
         }
-        .mapLatest { it ->
-            moduleEngine.moduleElementList[it.first]!!.moduleUseCase.quickSearch(it.second)
+        .mapLatest {
+            moduleEngine.moduleElementMap[it.first]!!.moduleUseCase.quickSearch(it.second)
         }
         .flatMapConcat { it }
         .asLiveData()

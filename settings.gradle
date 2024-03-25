@@ -16,3 +16,4 @@ rootProject.name = "Movie-Xplorer"
 include ':app'
 include ':core'
 include ':movie'
+include ':person'

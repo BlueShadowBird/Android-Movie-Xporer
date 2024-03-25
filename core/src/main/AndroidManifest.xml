@@ -5,10 +5,13 @@
 
     <application>
         <activity
-            android:theme="@style/Theme.MovieXplorer"
-            android:name=".SettingsActivity"
+            android:name=".presentation.view.InstallModuleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.view.SettingsActivity"
             android:exported="false"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.MovieXplorer" />
     </application>
 
 </manifest>

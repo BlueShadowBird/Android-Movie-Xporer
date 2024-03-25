@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 class MovieInteractor(private val movieRepository: IMovieRepository, private val settingRepository: ISettingRepository):
     MovieUseCase {
-    override suspend fun retrieveDetail(movieId: Int) = movieRepository.retrieveMovie(movieId)
+    override suspend fun retrieveDetail(itemId: Int) = movieRepository.retrieveMovie(itemId)
 
     override fun saveMovieToFavorite(movie: Movie) {
         movieRepository.saveMovieToFavorite(movie)

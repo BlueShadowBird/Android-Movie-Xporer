@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.web.dedekurniawan.moviexplorer.person.presentation.view.PersonDetailActivity" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            style="@style/Person.Image"
+            android:id="@+id/person_image"
+            android:contentDescription="@string/person_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_default_image" />
+
+        <id.web.dedekurniawan.moviexplorer.core.ui.CircularProgressBar
+            android:id="@+id/person_popularity"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_image"
+            tools:text="76%" />
+
+        <TextView
+            android:id="@+id/user_popularity"
+            style="@style/Person.UserScore"
+            android:gravity="center"
+            android:text="@string/popularity"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/person_popularity"
+            app:layout_constraintStart_toEndOf="@+id/person_popularity"
+            app:layout_constraintTop_toTopOf="@+id/person_popularity" />
+
+        <TextView
+            android:id="@+id/place_of_birth"
+            style="@style/Person.Field.Label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_popularity"
+            android:text="@string/place_of_birth" />
+
+        <TextView
+            style="@style/Person.Field.Value"
+            android:id="@+id/person_place_of_birth"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/place_of_birth"
+            tools:text="Smyrna, Georgia, USA" />
+
+        <TextView
+            style="@style/Person.Field.Label"
+            android:id="@+id/gender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_place_of_birth"
+            android:text="@string/gender" />
+        <TextView
+            style="@style/Person.Field.Value"
+            android:id="@+id/person_gender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gender"
+            tools:text="Male" />
+
+        <TextView
+            style="@style/Person.Field.Label"
+            android:id="@+id/birth_day"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/place_of_birth"
+            android:text="@string/birth_day" />
+
+        <TextView
+            style="@style/Person.Field.Value"
+            android:id="@+id/person_birth_day"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birth_day"
+            tools:text="1967-10-28" />
+
+        <TextView
+            style="@style/Person.Field.Label"
+            android:id="@+id/death_day"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_birth_day"
+            android:text="@string/death_day" />
+
+        <TextView
+            style="@style/Person.Field.Value"
+            android:id="@+id/person_death_day"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/death_day"
+            tools:text="1923-11-03" />
+
+        <TextView
+            style="@style/Person.Field.Label"
+            android:id="@+id/also_known_as"
+            android:text="@string/also_known_as"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_gender" />
+
+        <id.web.dedekurniawan.moviexplorer.core.ui.HorizontalList
+            style="@style/Person.Field.Value"
+            android:id="@+id/person_also_known_as"
+            app:layout_constraintStart_toStartOf="@+id/also_known_as"
+            app:layout_constraintTop_toBottomOf="@+id/also_known_as"
+            tools:text="Bumble Bee"/>
+
+        <TextView
+            style="@style/Person.Field.Overview"
+            android:id="@+id/person_biography"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_also_known_as"
+            tools:text="\tLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -18,7 +18,7 @@ import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
 import id.web.dedekurniawan.moviexplorer.ModuleEngineHandler
 import id.web.dedekurniawan.moviexplorer.R
-import id.web.dedekurniawan.moviexplorer.core.SettingsActivity
+import id.web.dedekurniawan.moviexplorer.core.presentation.view.SettingsActivity
 import id.web.dedekurniawan.moviexplorer.core.data.remote.Result
 import id.web.dedekurniawan.moviexplorer.core.domain.ModuleElement
 import id.web.dedekurniawan.moviexplorer.databinding.FrameContainerBinding

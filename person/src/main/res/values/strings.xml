@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="person_image">Person Image</string>
+    <string name="popularity">Popularity</string>
+
+    <!-- Person Detail -->
+    <string name="place_of_birth">Place Of Birth</string>
+    <string name="birth_day">Birth Day</string>
+    <string name="death_day">Death Day</string>
+    <string name="gender">Gender</string>
+    <string name="also_known_as">Also Known As</string>
+</resources>

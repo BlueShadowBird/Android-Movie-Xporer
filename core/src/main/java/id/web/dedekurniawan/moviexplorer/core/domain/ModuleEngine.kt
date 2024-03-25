@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.Flow
 
 
 class ModuleEngine{
-    val moduleElementList = linkedMapOf<String, ModuleElement>()
+    val moduleElementMap = linkedMapOf<String, ModuleElement>()
 
     fun addModuleElement(moduleElement: ModuleElement): ModuleEngine {
-        moduleElementList[moduleElement.name] = moduleElement
+        moduleElementMap[moduleElement.name] = moduleElement
         return this
     }
 }
@@ -19,6 +19,7 @@ class ModuleEngine{
 abstract class ModuleElement(val moduleUseCase: ModuleUseCase<*>) {
     abstract val name: String
     abstract val itemMenuId: Int
+
     abstract fun createFragment(): Fragment
     abstract fun startActivity(context: Context, itemId: Int)
 
@@ -27,7 +28,7 @@ abstract class ModuleElement(val moduleUseCase: ModuleUseCase<*>) {
         suspend fun quickSearch(query: String): Flow<Result<List<QuickSearchBaseModel>>>
         suspend fun search(query: String): Flow<Result<List<T>>>
         suspend fun retrieveTrending(): Flow<Result<List<T>>>
-        suspend fun retrieveDetail(movieId: Int): Flow<Result<T>>
+        suspend fun retrieveDetail(itemId: Int): Flow<Result<T>>
     }
 }
 

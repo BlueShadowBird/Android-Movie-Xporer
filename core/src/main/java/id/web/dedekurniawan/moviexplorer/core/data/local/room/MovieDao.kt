@@ -12,11 +12,11 @@ interface MovieDao {
     @Query("SELECT * FROM favorite")
     fun getAllFavorites(): Flow<List<FavoriteMovieEntity>>
 
-    @Query("SELECT * FROM favorite WHERE movie_id = :movie_id")
-    fun getFavoriteMovie(movie_id: String): Flow<FavoriteMovieEntity>
+    @Query("SELECT * FROM favorite WHERE movie_id = :movieId")
+    fun getFavoriteMovie(movieId: String): Flow<FavoriteMovieEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFavoriteMovies(Movies: List<FavoriteMovieEntity>)
+    fun insertFavoriteMovies(movies: List<FavoriteMovieEntity>)
 
     @Query("DELETE FROM favorite")
     fun deleteFavorites()
@@ -24,9 +24,9 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavoriteMovie(movie: FavoriteMovieEntity)
 
-    @Query("DELETE FROM favorite WHERE movie_id = :movie_id")
-    fun deleteFavoriteMoview(movie_id: String)
+    @Query("DELETE FROM favorite WHERE movie_id = :movieId")
+    fun deleteFavoriteMovie(movieId: String)
 
-    @Query("SELECT EXISTS(SELECT * FROM favorite WHERE movie_id = :movie_id)")
-    fun isFavorited(movie_id: String): Flow<Boolean>
+    @Query("SELECT EXISTS(SELECT * FROM favorite WHERE movie_id = :movieId)")
+    fun isFavorited(movieId: String): Flow<Boolean>
 }

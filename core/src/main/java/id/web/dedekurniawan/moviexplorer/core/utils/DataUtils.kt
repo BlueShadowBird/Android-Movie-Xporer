@@ -80,3 +80,5 @@ class Date : Parcelable {
         override fun newArray(size: Int): Array<Date?> = arrayOfNulls(size)
     }
 }
+
+fun String.toDate() = Date().apply { parseDate(this@toDate) }

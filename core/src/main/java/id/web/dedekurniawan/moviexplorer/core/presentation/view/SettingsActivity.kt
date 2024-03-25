@@ -1,10 +1,12 @@
-package id.web.dedekurniawan.moviexplorer.core
+package id.web.dedekurniawan.moviexplorer.core.presentation.view
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
@@ -13,8 +15,9 @@ import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import id.web.dedekurniawan.moviexplorer.core.utils.KEY_ACTOR_MODULE
+import id.web.dedekurniawan.moviexplorer.core.R
 import id.web.dedekurniawan.moviexplorer.core.utils.KEY_INCLUDE_ADULT
+import id.web.dedekurniawan.moviexplorer.core.utils.KEY_PERSON_MODULE
 import id.web.dedekurniawan.moviexplorer.core.utils.KEY_THEME
 import id.web.dedekurniawan.moviexplorer.core.utils.alert
 import id.web.dedekurniawan.moviexplorer.core.utils.changeTheme
@@ -41,13 +44,24 @@ class SettingsActivity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
         private lateinit var includeAdultSwitch: SwitchPreferenceCompat
-        private lateinit var actorModuleSwitch: SwitchPreferenceCompat
+        private lateinit var personModuleSwitch: SwitchPreferenceCompat
+
+        private val installModuleActivityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ){ result ->
+            if(result.resultCode == RESULT_OK){
+                val data: Intent? = result.data
+                when(data?.getStringExtra(InstallModuleActivity.EXTRA_MODULE_NAME).toString()){
+                    KEY_PERSON_MODULE -> {
+                        personModuleSwitch.isChecked =
+                            data?.getBooleanExtra(InstallModuleActivity.EXTRA_INSTALL_STATUS, false) == true
+                    }
+                }
+            }
+        }
         override fun onResume() {
             super.onResume()
             preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
-            preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener { sharedPreferences, s ->
-
-            }
         }
 
         override fun onPause() {
@@ -121,14 +135,16 @@ class SettingsActivity : AppCompatActivity() {
                 return@setOnPreferenceChangeListener true   // include adult is unchecked, update new value
             }
 
-            actorModuleSwitch = findPreference(KEY_ACTOR_MODULE)!!
-            actorModuleSwitch.setOnPreferenceChangeListener { preference, newValue ->
+            personModuleSwitch = findPreference(KEY_PERSON_MODULE)!!
+            personModuleSwitch.setOnPreferenceChangeListener { preference, newValue ->
                 if(newValue == true){
                     val dialogClickListener: DialogInterface.OnClickListener =
                         DialogInterface.OnClickListener { _, which ->
                             when (which) {
                                 DialogInterface.BUTTON_POSITIVE -> {
-                                    (preference as SwitchPreferenceCompat).isChecked = true
+                                    val intent = Intent(requireActivity(), InstallModuleActivity::class.java)
+                                    intent.putExtra(InstallModuleActivity.EXTRA_MODULE_NAME, KEY_PERSON_MODULE)
+                                    installModuleActivityResultLauncher.launch(intent)
                                 }
                             }
                         }
@@ -136,13 +152,13 @@ class SettingsActivity : AppCompatActivity() {
                     AlertDialog.Builder(requireContext())
                         .setPositiveButton(getString(R.string.yes), dialogClickListener)
                         .setNegativeButton(getString(R.string.no), dialogClickListener)
-                        .setMessage(R.string.actor_module_dialog_message)
+                        .setMessage(R.string.person_module_dialog_message)
                         .show()
 
-                    return@setOnPreferenceChangeListener false  // include adult is checked, change to true only On Authentication Succeeded
+                    return@setOnPreferenceChangeListener false  // person is checked, change to true only On Authentication Succeeded
                 }
 
-                return@setOnPreferenceChangeListener false   // include adult is unchecked, update new value
+                return@setOnPreferenceChangeListener false   // person is unchecked, update new value
             }
         }
 
@@ -154,7 +170,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         private fun alert(message: String) {
-            alert(this.requireView(), TAG, message)
+            alert(this.requireContext(), TAG, message)
         }
 
         companion object{

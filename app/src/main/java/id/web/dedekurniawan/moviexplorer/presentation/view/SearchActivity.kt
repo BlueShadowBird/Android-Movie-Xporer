@@ -7,7 +7,7 @@ class SearchActivity: AppMenuCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        moduleElement = moduleEngineHandler.moduleEngine.moduleElementList[intent.getStringExtra(EXTRA_MODULE_NAME)]!!
+        moduleElement = moduleEngineHandler.moduleEngine.moduleElementMap[intent.getStringExtra(EXTRA_MODULE_NAME)]!!
 
         val fragment = moduleElement.createFragment()
         val arguments = Bundle()

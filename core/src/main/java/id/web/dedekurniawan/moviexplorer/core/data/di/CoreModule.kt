@@ -5,6 +5,7 @@ import id.web.dedekurniawan.moviexplorer.core.BuildConfig
 import id.web.dedekurniawan.moviexplorer.core.domain.ModuleEngine
 import id.web.dedekurniawan.moviexplorer.core.data.SettingRepository
 import id.web.dedekurniawan.moviexplorer.core.data.local.room.MovieDatabase
+import id.web.dedekurniawan.moviexplorer.core.domain.SettingModuleChangeHandler
 import id.web.dedekurniawan.moviexplorer.core.domain.repository.ISettingRepository
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
@@ -79,6 +80,10 @@ val repositoryKoinModule = module {
 }
 
 val engineKoinModule = module {
+    single {
+        SettingModuleChangeHandler()
+    }
+
     single {
         ModuleEngine()
     }

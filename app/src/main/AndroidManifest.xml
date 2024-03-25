@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <dist:module dist:instant="true" />
 
     <application
         android:name=".MovieXplorerApplication"
@@ -27,7 +30,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.view.SearchActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

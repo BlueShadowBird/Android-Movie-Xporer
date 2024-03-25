@@ -1,0 +1,38 @@
+<resources>
+
+    <style name="Person">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+    <style name="Person.TagLine">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Person.Image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+    <style name="Person.KnownAs">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="Person.UserScore">
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Person.Field">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="Person.Field.Label">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Person.Field.Value">
+    </style>
+    <style name="Person.Field.Overview">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+</resources>

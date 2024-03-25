@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.dynamic-feature'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+}
+
+apply from: '../shared_dependencies.gradle'
+
+android {
+    namespace 'id.web.dedekurniawan.moviexplorer.person'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 34
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    implementation project(":app")
+
+    implementation "androidx.core:core-splashscreen:$splashscreen_version"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
+
+    //koin
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+}
