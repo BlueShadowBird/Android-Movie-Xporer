@@ -45,41 +45,41 @@ class InstallModuleActivity : AppCompatActivity(){
                         lottieAnimationView.playAnimation()
 
 
-                        binding.installStatus.text = getString(R.string.splitinstall_state_unknown)
+                        binding.installStatus.text = getString(R.string.splitinstall_state_pending)
                     }
                     SplitInstallSessionStatus.DOWNLOADING -> {
                         lottieAnimationView.repeatCount = LottieDrawable.INFINITE
                         lottieAnimationView.setMaxFrame(100)
                         lottieAnimationView.setAnimation(R.raw.lottie_download)
                         lottieAnimationView.playAnimation()
-                        val progress = if(state.totalBytesToDownload()>=0L)
-                            state.bytesDownloaded() / state.totalBytesToDownload()
+                        val progress = if(state.totalBytesToDownload()>0L)
+                            state.bytesDownloaded().toFloat() / state.totalBytesToDownload().toFloat()
                         else
-                            0
+                            0F
 
-                        binding.installStatus.text = String.format(getString(R.string.splitinstall_state_downloading), progress.toFloat())
+                        binding.installStatus.text = String.format(getString(R.string.splitinstall_state_downloading), progress)
                     }
                     SplitInstallSessionStatus.DOWNLOADED -> {
                         lottieAnimationView.setMaxFrame(Integer.MAX_VALUE)
                         lottieAnimationView.repeatCount = 0
 
-                        binding.installStatus.text = getString(R.string.splitinstall_state_downloading)
+                        binding.installStatus.text = getString(R.string.splitinstall_state_downloaded)
                     }
                     SplitInstallSessionStatus.INSTALLING -> {
                         lottieAnimationView.repeatCount = LottieDrawable.INFINITE
                         lottieAnimationView.setAnimation(R.raw.lottie_loading)
                         lottieAnimationView.playAnimation()
 
-                        binding.installStatus.text = getString(R.string.splitinstall_state_downloading)
+                        binding.installStatus.text = getString(R.string.splitinstall_state_installing)
                     }
                     SplitInstallSessionStatus.INSTALLED -> {
                         lottieAnimationView.repeatCount = 0
                         lottieAnimationView.setAnimation(R.raw.lottie_done)
-                        postInstalled()
 
                         binding.installStatus.text = String.format(
                             getString(R.string.splitinstall_state_installed), moduleName
                         )
+                        postInstalled()
                     }
                     SplitInstallSessionStatus.FAILED -> {
                         lottieAnimationView.setAnimation(R.raw.lottie_fail)
@@ -172,13 +172,13 @@ class InstallModuleActivity : AppCompatActivity(){
     }
 
     private fun postInstalled(){
-        settingModuleChangeHandler.notifyListener(moduleName)
-
         val resultIntent = Intent()
         resultIntent.putExtra(EXTRA_MODULE_NAME, moduleName)
         resultIntent.putExtra(EXTRA_INSTALL_STATUS, true)
         setResult(RESULT_OK, resultIntent)
         binding.backButton.visibility = View.VISIBLE
+
+        settingModuleChangeHandler.notifyListener(moduleName)
     }
 
     private fun alert(message: String) {

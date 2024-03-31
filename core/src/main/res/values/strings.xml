@@ -48,7 +48,7 @@
     <string name="splitinstall_state_unknown">Error with unknows reason</string>
     <string name="splitinstall_state_pending">Initializing</string>
     <string name="splitinstall_state_downloading">Downloading (%1$.2f%%)</string>
-    <string name="splitinstall_state_download">Downloaded</string>
+    <string name="splitinstall_state_downloaded">Downloaded</string>
     <string name="splitinstall_state_installing">Installing</string>
     <string name="splitinstall_state_installed">Module %1$s Installed</string>
     <string name="splitinstall_state_failed">Installation failed</string>
