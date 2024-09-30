@@ -6,9 +6,6 @@ import android.view.View
 import androidx.core.view.get
 import id.web.dedekurniawan.moviexplorer.ModuleEngineHandler
 import id.web.dedekurniawan.moviexplorer.core.domain.ModuleElement
-import kotlin.collections.first
-import kotlin.collections.forEach
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
 class MainActivity : AppMenuCompatActivity(), ModuleEngineHandler.ModuleEngineUpdateListener {
@@ -36,7 +33,7 @@ class MainActivity : AppMenuCompatActivity(), ModuleEngineHandler.ModuleEngineUp
                     dashboardFragmentMap[moduleElement.itemMenuId] = moduleElement
                 }
 
-                binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
+                bottomNavigation.setOnItemSelectedListener { menuItem ->
                     moduleElement = dashboardFragmentMap[menuItem.itemId]!!
                     replaceFragment(moduleElement.createFragment())
                     return@setOnItemSelectedListener true

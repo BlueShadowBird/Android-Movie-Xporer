@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
 
-class QuicksearchVIewModel(private val moduleEngine: ModuleEngine): ViewModel() {
+class QuicksearchViewModel(private val moduleEngine: ModuleEngine): ViewModel() {
     private val _quickSearchResult = MutableStateFlow(Pair("", ""))
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     val quickSearchResult: LiveData<Result<List<QuickSearchBaseModel>>> = _quickSearchResult

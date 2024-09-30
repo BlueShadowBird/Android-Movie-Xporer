@@ -1,6 +1,10 @@
 package id.web.dedekurniawan.moviexplorer.movie.data.remote
 
 import id.web.dedekurniawan.moviexplorer.core.enum.Sort
+import id.web.dedekurniawan.moviexplorer.movie.data.remote.response.MovieApiResponse
+import id.web.dedekurniawan.moviexplorer.movie.data.remote.response.MovieImageApiResponse
+import id.web.dedekurniawan.moviexplorer.movie.data.remote.response.MovieResponse
+import id.web.dedekurniawan.moviexplorer.movie.data.remote.response.MovieVideoApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -21,4 +25,14 @@ interface MovieApiService {
     suspend fun retrieveMovie(
         @Path("movieid") movieid: Int,
     ): MovieResponse
+
+    @GET("movie/{movieid}/images")
+    suspend fun retrieveMovieImages(
+        @Path("movieid") movieid: Int,
+    ): MovieImageApiResponse
+
+    @GET("movie/{movieid}/videos")
+    suspend fun retrieveMovieVideos(
+        @Path("movieid") movieid: Int,
+    ): MovieVideoApiResponse
 }

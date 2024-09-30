@@ -32,28 +32,29 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@string/person_image"
-            android:src="@drawable/ic_default_image"
+            android:src="@drawable/image_default"
+            android:transitionName="imageTransition"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <id.web.dedekurniawan.moviexplorer.core.ui.CircularProgressBar
-            android:id="@+id/person_popularity"
+            android:id="@+id/popularity"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/vote_popularity_text"
+            app:layout_constraintEnd_toStartOf="@+id/popularity_text"
             app:layout_constraintTop_toTopOf="@+id/person_department" />
 
         <TextView
-            android:id="@+id/vote_popularity_text"
+            android:id="@+id/popularity_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/popularity"
             android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="@+id/person_popularity"
+            app:layout_constraintBottom_toBottomOf="@+id/popularity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/person_popularity" />
+            app:layout_constraintTop_toTopOf="@+id/popularity" />
 
         <TextView
             android:id="@+id/person_department"

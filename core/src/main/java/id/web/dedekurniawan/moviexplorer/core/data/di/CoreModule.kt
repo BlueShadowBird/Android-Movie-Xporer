@@ -2,10 +2,12 @@ package id.web.dedekurniawan.moviexplorer.core.data.di
 
 import androidx.room.Room
 import id.web.dedekurniawan.moviexplorer.core.BuildConfig
+import id.web.dedekurniawan.moviexplorer.core.data.local.room.MovieXplorerDatabase
+import id.web.dedekurniawan.moviexplorer.core.data.repository.FavoriteRepository
 import id.web.dedekurniawan.moviexplorer.core.domain.ModuleEngine
-import id.web.dedekurniawan.moviexplorer.core.data.SettingRepository
-import id.web.dedekurniawan.moviexplorer.core.data.local.room.MovieDatabase
+import id.web.dedekurniawan.moviexplorer.core.data.repository.SettingRepository
 import id.web.dedekurniawan.moviexplorer.core.domain.SettingModuleChangeHandler
+import id.web.dedekurniawan.moviexplorer.core.domain.repository.IFavoriteRepository
 import id.web.dedekurniawan.moviexplorer.core.domain.repository.ISettingRepository
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
@@ -24,8 +26,7 @@ val networkKoinModule = module {
         val key = properties.getProperty("key")
 
         val certificatePinner = CertificatePinner.Builder()
-//            .add("steamcommunity.com", BuildConfig.STEAMCOMMUNITY_CERTIFICATE)
-//            .add("store.steampowered.com", BuildConfig.STEAMSTORE_CERTIFICATE)
+//            .add("api.themoviedb.org", BuildConfig.TMDB_CERTIFICATE)
             .build()
 
         OkHttpClient.Builder()
@@ -35,20 +36,10 @@ val networkKoinModule = module {
                 else HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
             ).certificatePinner(certificatePinner)
             .addInterceptor {
-//                val original = it.request()
-//                val url = original.url.newBuilder()
-//                    .addQueryParameter("api_key", properties.getProperty("key"))
-//                    .build()
-//
-//                val request = original.newBuilder().url(url).build()
-//                it.proceed(request)
-
-                val builder = it.request().newBuilder()
-
-
-                builder
-                    .addHeader("accept", "application/json")
-                    .addHeader("Authorization", "Bearer $key")
+                val builder = it.request().newBuilder().apply {
+                    addHeader("accept", "application/json")
+                    addHeader("Authorization", "Bearer $key")
+                }
                 it.proceed(builder.build())
             }
             .connectTimeout(15, TimeUnit.SECONDS)
@@ -66,16 +57,15 @@ val networkKoinModule = module {
 }
 
 val repositoryKoinModule = module {
-    single { get<MovieDatabase>().getMovieDao() }
+    single { get<MovieXplorerDatabase>().getFavoriteDao() }
     single {
-//        val passphrase: ByteArray = SQLiteDatabase.getBytes("MovieXplorer".toCharArray())
-//        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
-            MovieDatabase::class.java, "Favorite.db").fallbackToDestructiveMigration()
-//            .openHelperFactory(factory)
-            .build()
+            MovieXplorerDatabase::class.java, "MovieXplorer.db"
+        ).fallbackToDestructiveMigration().build()
     }
+
+    single<IFavoriteRepository> { FavoriteRepository(get()) }
     single<ISettingRepository> { SettingRepository(get()) }
 }
 

@@ -4,9 +4,12 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
 
-    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
-    testImplementation "junit:junit:$junit_junit_version"
+    implementation "androidx.core:core-splashscreen:$splashscreen_version"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
 
     //koin
     implementation "io.insert-koin:koin-core:$koin_version"
@@ -14,4 +17,11 @@ dependencies {
 
     //paging 3
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    //admob
+    implementation "com.google.android.gms:play-services-ads:$playservicesads_version"
+
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
+    androidTestImplementation "androidx.test.espresso:$espresso_core_version"
+    testImplementation "junit:junit:$junit_junit_version"
 }

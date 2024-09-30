@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.android.gms.ads.AdRequest
 import id.web.dedekurniawan.moviexplorer.core.data.remote.Result
 import id.web.dedekurniawan.moviexplorer.core.utils.alert
-import id.web.dedekurniawan.moviexplorer.core.utils.loadGLide
+import id.web.dedekurniawan.moviexplorer.core.utils.loadImage
 import id.web.dedekurniawan.moviexplorer.core.utils.reviewScoreToColor
 import id.web.dedekurniawan.moviexplorer.movie.R
 import id.web.dedekurniawan.moviexplorer.person.databinding.ActivityPersonBinding
@@ -19,6 +20,7 @@ import kotlin.math.roundToInt
 class PersonDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPersonBinding
     private val viewModel: PersonViewModel by viewModel()
+    private lateinit var person: Person
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,28 +32,46 @@ class PersonDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(binding.root)
 
-        viewModel.result.observe(this){ result ->
-            when(result){
-                is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    result.data?.let { bindPersonData(it) }
-                }
-                is Result.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    alert(binding.root, result.message.toString())
-                }
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
-                else -> {}
+        intent.getStringExtra(EXTRA_PERSON_IMAGE)?.let {
+            loadImage(this, binding.personImage, it)
+        }
+
+        viewModel.run {
+            result.observe(this@PersonDetailActivity){ result ->
+                when(result){
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        result.data?.let {
+                            person = it
+                            listenFavorite(person.id)
+                            bindPersonData()
+                        }
+                    }
+                    is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        alert(binding.root, result.message.toString())
+                    }
+                }
+            }
+
+            isFavoriteResult.observe(this@PersonDetailActivity){
+                if(it)binding.favorite.setImageResource(id.web.dedekurniawan.moviexplorer.core.R.drawable.ic_favorited)
+                else binding.favorite.setImageResource(id.web.dedekurniawan.moviexplorer.core.R.drawable.ic_favorite)
+
+                person.isFavorite = it
             }
         }
         viewModel.retrievePerson(intent.getIntExtra(EXTRA_PERSON_ID, 0))
     }
 
     @SuppressLint("SetTextI18n")
-    private fun bindPersonData(person: Person) {
+    private fun bindPersonData() {
         supportActionBar?.title = person.name
         binding.apply {
             personGender.text = person.gender
@@ -72,7 +92,6 @@ class PersonDetailActivity : AppCompatActivity() {
                 userPopularity.text = getString(R.string.not_scored)
             }
 
-
             if (person.deathday == null){
                 deathDay.visibility = View.GONE
                 personDeathDay.visibility = View.GONE
@@ -80,16 +99,25 @@ class PersonDetailActivity : AppCompatActivity() {
                 personDeathDay.text = person.deathday.toString()
             }
 
-            loadGLide(personImage, person.profilePath)
+            favorite.setOnClickListener {
+                if(person.isFavorite){
+                    viewModel.deleteFavorite(person)
+                }else{
+                    viewModel.saveToFavorite(person)
+                }
+            }
+
+            loadImage(this@PersonDetailActivity, personImage, person.profilePath)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        finish()
+        onBackPressedDispatcher.onBackPressed()
         return true
     }
 
     companion object{
         const val EXTRA_PERSON_ID = "extraPersonId"
+        const val EXTRA_PERSON_IMAGE = "extraPersonImage"
     }
 }

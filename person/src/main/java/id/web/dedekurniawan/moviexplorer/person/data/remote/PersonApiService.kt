@@ -1,6 +1,8 @@
 package id.web.dedekurniawan.moviexplorer.person.data.remote
 
 import id.web.dedekurniawan.moviexplorer.core.enum.Sort
+import id.web.dedekurniawan.moviexplorer.person.data.remote.response.PersonApiResponse
+import id.web.dedekurniawan.moviexplorer.person.data.remote.response.PersonResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

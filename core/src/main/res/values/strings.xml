@@ -41,7 +41,6 @@
     <string name="person_module_off">Person Module Is Not Installed</string>
     <string name="person_module_dialog_message">Are you sure to install Person Module</string>
 
-    <string name="esrb_18_plus">ESRB 18+</string>
     <string name="icon">Icon</string>
     <string name="back">back</string>
 
@@ -55,4 +54,7 @@
     <string name="splitinstall_state_canceling">Canceling</string>
     <string name="splitinstall_state_canceled">Installation canceled</string>
     <string name="splitinstall_state_confirmation_fail">Confirmation fail</string>
+    <string name="carousel_image_content_description">Image</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>

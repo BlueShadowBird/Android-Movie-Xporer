@@ -1,9 +1,11 @@
 package id.web.dedekurniawan.moviexplorer.person.data.di
 
+import android.app.Activity
 import id.web.dedekurniawan.moviexplorer.core.data.di.KoinModuleProvider
 import id.web.dedekurniawan.moviexplorer.person.adapter.PersonAdapter
 import id.web.dedekurniawan.moviexplorer.person.data.PersonRepository
 import id.web.dedekurniawan.moviexplorer.person.data.remote.PersonApiService
+import id.web.dedekurniawan.moviexplorer.person.domain.PersonModuleElement
 import id.web.dedekurniawan.moviexplorer.person.domain.repository.IPersonRepository
 import id.web.dedekurniawan.moviexplorer.person.domain.usecase.PersonInteractor
 import id.web.dedekurniawan.moviexplorer.person.domain.usecase.PersonUseCase
@@ -33,15 +35,20 @@ val personKoinModule = module {
     single<PersonUseCase> {
         PersonInteractor(
             get(),
+            get(),
             get()
         )
     }
 
-    factory { PersonAdapter() }
+    single {
+        PersonModuleElement(get())
+    }
+
+    factory { (activity: Activity) -> PersonAdapter(activity) }
 
     viewModel { PersonViewModel(get()) }
 }
 
-class PersonModuleProvider: KoinModuleProvider {
+class PersonKoinModuleProvider: KoinModuleProvider {
     override fun getModule() = personKoinModule
 }

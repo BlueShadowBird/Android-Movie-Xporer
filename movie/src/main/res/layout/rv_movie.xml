@@ -45,10 +45,11 @@
             android:layout_marginBottom="12dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/movie_image"
+            android:transitionName="imageTransition"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/movie_vote_average"
-            android:src="@drawable/ic_default_image" />
+            android:src="@drawable/image_default" />
 
         <id.web.dedekurniawan.moviexplorer.core.ui.CircularProgressBar
             android:id="@+id/movie_vote_average"

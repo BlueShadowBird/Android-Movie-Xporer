@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.person.data.remote
+package id.web.dedekurniawan.moviexplorer.person.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

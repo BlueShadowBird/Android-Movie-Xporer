@@ -12,17 +12,25 @@ import com.google.android.material.snackbar.Snackbar
 import id.web.dedekurniawan.moviexplorer.core.R
 import kotlin.math.min
 
-fun loadGLide(movieImage: ImageView, moviePoster: String?){
+fun loadImage(context: Context, movieImage: ImageView, image: String?) {
     Glide.with(movieImage)
         .load(
-            if(moviePoster.isNullOrEmpty()){
-                R.drawable.ic_default_image
-            }else{
-                "https://image.tmdb.org/t/p/w500${moviePoster}"
+            if (image.isNullOrEmpty()) {
+                R.drawable.image_not_supported
+            } else {
+                getImageAddressAtServer(context, image)
             }
         )
+        .placeholder(R.drawable.image_default)
+        .error(R.drawable.image_broken)
         .into(movieImage)
 }
+
+fun getImageAddressAtServer(context: Context, image: String) = if(image.startsWith("local:")){
+        "${context.filesDir}$image"
+    }else{
+        "https://image.tmdb.org/t/p/original${image}"
+    }
 
 fun reviewScoreToColor(score: Int) = Color.argb(
     255,
@@ -50,4 +58,9 @@ fun alert(view: View, tag: String?, message: String){
 fun alert(context: Context, tag: String?, message: String){
     alert(context, message)
     Log.i(tag, message)
+}
+
+fun getFavoriteDrawable(isFavorite: Boolean): Int {
+    return if(isFavorite)R.drawable.ic_favorited
+    else R.drawable.ic_favorite
 }

@@ -15,6 +15,7 @@
         <item quantity="one">%1$d hour</item>
         <item quantity="other">%1$d hours</item>
     </plurals>
-    <string name="dolar_amount_format">$%1$s</string>
-    <string name="title_movie">movie</string>\
+    <string name="dollar_amount_format">$%1$s</string>
+    <string name="play_video">Play Video</string>
+    <string name="favorite">Favorite</string>
 </resources>

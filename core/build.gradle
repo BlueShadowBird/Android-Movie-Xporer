@@ -17,10 +17,16 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "TMDB_CERTIFICATE", '"SHA256: k1Hdw5sdSn5kh/gemLVSQD/P4i4IBQEY1tW4WNxh9XM="'
     }
 
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -34,6 +40,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 
@@ -45,18 +52,21 @@ dependencies {
     // Room database
     implementation "androidx.room:room-runtime:$room_ktx_version"
     implementation "androidx.room:room-ktx:$room_ktx_version"
+
+    //UI
+    implementation "androidx.activity:activity-ktx:$activityktx_version"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout_version"
     ksp "androidx.room:room-compiler:$room_ktx_ksp_version"
 
-    //retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
-
-    //glide
+    //Media
     implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation "androidx.media3:media3-exoplayer:$exoplayer_version"
+    implementation "androidx.media3:media3-ui:$exoplayer_version"
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$youtubeplayer_version"
 
     //biometric
-   implementation "androidx.biometric:biometric-ktx:$biometric_version"
+    implementation "androidx.biometric:biometric-ktx:$biometric_version"
 
-    implementation "com.airbnb.android:lottie:6.4.0"
+    implementation "com.airbnb.android:lottie:$lottie_version"
+    implementation "androidx.viewpager2:viewpager2:$viewpager2_version"
 }

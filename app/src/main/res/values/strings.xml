@@ -11,6 +11,5 @@
     <string name="clickable_privacy_policy_text">Here</string>
     <string name="tmdb_logo">TMDB Logo</string>
     <string name="movie_xplorer_logo">Movie Xplorer Logo</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="title_person">Person</string>
 </resources>

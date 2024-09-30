@@ -3,9 +3,15 @@ package id.web.dedekurniawan.moviexplorer.core.presentation.view
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.airbnb.lottie.LottieDrawable
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.play.core.splitinstall.SplitInstallException
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
@@ -28,6 +34,9 @@ class InstallModuleActivity : AppCompatActivity(){
     private lateinit var splitInstallManager: SplitInstallManager
     private var sessionId: Int? = null
     private val settingModuleChangeHandler by inject<SettingModuleChangeHandler>()
+
+    private var isInstalled = false
+
     private val listener = SplitInstallStateUpdatedListener{ state ->
         sessionId?.let {
             val lottieAnimationView = binding.lottieAnimationView//run only if install request success
@@ -117,13 +126,26 @@ class InstallModuleActivity : AppCompatActivity(){
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         moduleName = intent.getStringExtra(EXTRA_MODULE_NAME).toString()
         binding = ActivityInstallModuleBinding.inflate(layoutInflater)
 
         binding.backButton.setOnClickListener {
-            finish()
+            val adRequest: AdRequest = AdRequest.Builder().build()
+            InterstitialAd.load(this, getString(R.string.admob_interstitial_ad_unit_id), adRequest, object: InterstitialAdLoadCallback(){
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d(TAG, "Ad was loaded.")
+                    interstitialAd.show(this@InstallModuleActivity)
+                    finish()
+                }
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(TAG, adError.toString())
+                    alert("Failed load ads, try again")
+                }
+            })
         }
 
         setContentView(binding.root)
@@ -167,7 +189,7 @@ class InstallModuleActivity : AppCompatActivity(){
         }else{
             alert("Module had been Installed")
             postInstalled()
-            finish()
+//            finish()
         }
     }
 
@@ -177,6 +199,7 @@ class InstallModuleActivity : AppCompatActivity(){
         resultIntent.putExtra(EXTRA_INSTALL_STATUS, true)
         setResult(RESULT_OK, resultIntent)
         binding.backButton.visibility = View.VISIBLE
+        isInstalled = true
 
         settingModuleChangeHandler.notifyListener(moduleName)
     }

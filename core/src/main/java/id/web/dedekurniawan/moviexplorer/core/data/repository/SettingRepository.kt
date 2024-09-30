@@ -1,4 +1,4 @@
-package id.web.dedekurniawan.moviexplorer.core.data
+package id.web.dedekurniawan.moviexplorer.core.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences

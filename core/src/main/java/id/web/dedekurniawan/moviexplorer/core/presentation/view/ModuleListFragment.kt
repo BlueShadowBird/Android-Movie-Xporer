@@ -13,6 +13,7 @@ import id.web.dedekurniawan.moviexplorer.core.utils.alert
 abstract class ModuleListFragment<T> : Fragment() {
     protected lateinit var binding: FragmentListBinding
     protected abstract val viewModel: ModuleViewModel<T>
+    protected abstract val moduleName: String
 
     abstract fun processData(dataList: List<T>?)
 
@@ -38,20 +39,39 @@ abstract class ModuleListFragment<T> : Fragment() {
             }
         }
 
-        val searchQuery = arguments?.getString(SEARCH_QUERY_ARGUMENT)
-        if(searchQuery.isNullOrBlank()){
-            viewModel.retrieveTrending()
-        }else{
-            activity?.title  = "Search Movie: $searchQuery"
-            viewModel.search(searchQuery)
+        binding.run {
+            swipeRefreshLayout.setOnRefreshListener {
+                // Refresh your data here
+                loadData()
+                swipeRefreshLayout.isRefreshing = false //no need to show refresh indicator, the page have loading indicator
+            }
         }
+
+        loadData()
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
+    private fun loadData(){
+        val isFavorite = arguments?.getBoolean(ARGUMENT_ISFAVORITE)
+        if(isFavorite == true){
+            viewModel.getFavorites()
+        }else{
+            val searchQuery = arguments?.getString(ARGUMENT_SEARCH_QUERY)
+            if(searchQuery.isNullOrBlank()){
+                viewModel.retrieveTrending()
+            }else{
+                activity?.title  = "Search $moduleName: $searchQuery"
+                viewModel.search(searchQuery)
+            }
+        }
+
+    }
+
     companion object{
         private const val TAG = "BaseListFragment"
-        const val SEARCH_QUERY_ARGUMENT = "searchQuery"
+        const val ARGUMENT_ISFAVORITE = "isFavorite"
+        const val ARGUMENT_SEARCH_QUERY = "searchQuery"
     }
 }

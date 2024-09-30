@@ -1,0 +1,52 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <ImageView
+        android:id="@+id/skip_next_button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="@string/next"
+        android:src="@drawable/skip_next"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/youtube_player_view"
+        app:layout_constraintEnd_toEndOf="@id/youtube_player_view"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="@id/youtube_player_view"
+        app:layout_constraintTop_toTopOf="@id/youtube_player_view" />
+
+    <ImageView
+        android:id="@+id/skip_previous_button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="@string/previous"
+        android:src="@drawable/skip_previous"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/youtube_player_view"
+        app:layout_constraintEnd_toEndOf="@id/youtube_player_view"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="@id/youtube_player_view"
+        app:layout_constraintTop_toTopOf="@id/youtube_player_view" />
+
+    <ImageView
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back"
+        android:src="@drawable/close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@ import id.web.dedekurniawan.moviexplorer.core.presentation.view.SettingsActivity
 import id.web.dedekurniawan.moviexplorer.core.data.remote.Result
 import id.web.dedekurniawan.moviexplorer.core.domain.ModuleElement
 import id.web.dedekurniawan.moviexplorer.databinding.FrameContainerBinding
-import id.web.dedekurniawan.moviexplorer.presentation.viewmodel.QuicksearchVIewModel
+import id.web.dedekurniawan.moviexplorer.presentation.viewmodel.QuicksearchViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,20 +30,20 @@ abstract class AppMenuCompatActivity : AppCompatActivity() {
     protected lateinit var binding: FrameContainerBinding
     protected val moduleEngineHandler: ModuleEngineHandler by inject()
     protected lateinit var moduleElement: ModuleElement
-    private val quicksearchVIewModel: QuicksearchVIewModel by viewModel()
+    private val quickSearchViewModel: QuicksearchViewModel by viewModel()
     private lateinit var suggestionAdapter: SimpleCursorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
-        installSplashScreen()
-
         binding = FrameContainerBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
     }
 
     fun quickSearch(query: String) {
-        quicksearchVIewModel.quickSearch(moduleElement.name, query)
+        quickSearchViewModel.quickSearch(moduleElement.name, query)
     }
 
     fun search(query: String) {
@@ -118,7 +118,7 @@ abstract class AppMenuCompatActivity : AppCompatActivity() {
             }
         })
 
-        quicksearchVIewModel.quickSearchResult.observe(this){ result ->
+        quickSearchViewModel.quickSearchResult.observe(this){ result ->
             when(result){
                 is Result.Loading -> {
 //                    binding.progressBar.visibility = View.VISIBLE
@@ -150,6 +150,11 @@ abstract class AppMenuCompatActivity : AppCompatActivity() {
         when(item.itemId){
             R.id.app_bar_setting -> startActivity(Intent(this, SettingsActivity::class.java))
             R.id.app_bar_about -> startActivity(Intent(this, AboutActivity::class.java))
+            R.id.app_bar_favorite -> {
+                val intent = Intent(this, FavoriteActivity::class.java)
+                intent.putExtra(FavoriteActivity.EXTRA_MODULE_NAME, moduleElement.name)
+                startActivity(intent)
+            }
         }
         return true
     }

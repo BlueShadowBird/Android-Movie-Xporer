@@ -1,9 +1,11 @@
 package id.web.dedekurniawan.moviexplorer.movie.data.di
 
 
+import android.app.Activity
 import id.web.dedekurniawan.moviexplorer.movie.adapter.MovieAdapter
 import id.web.dedekurniawan.moviexplorer.movie.data.MovieRepository
 import id.web.dedekurniawan.moviexplorer.movie.data.remote.MovieApiService
+import id.web.dedekurniawan.moviexplorer.movie.domain.MovieModuleElement
 import id.web.dedekurniawan.moviexplorer.movie.domain.repository.IMovieRepository
 import id.web.dedekurniawan.moviexplorer.movie.domain.usecase.MovieInteractor
 import id.web.dedekurniawan.moviexplorer.movie.domain.usecase.MovieUseCase
@@ -26,7 +28,6 @@ val movieKoinModule = module {
 
     single<IMovieRepository> {
         MovieRepository(
-            get(),
             get()
         )
     }
@@ -34,13 +35,16 @@ val movieKoinModule = module {
     single<MovieUseCase> {
         MovieInteractor(
             get(),
+            get(),
             get()
         )
     }
 
-    factory { MovieAdapter() }
+    single {
+        MovieModuleElement(get())
+    }
+
+    factory { (activity: Activity) -> MovieAdapter(activity) }
 
     viewModel { MovieViewModel(get()) }
-
-
 }

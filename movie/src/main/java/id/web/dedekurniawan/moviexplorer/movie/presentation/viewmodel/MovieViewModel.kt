@@ -5,6 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import id.web.dedekurniawan.moviexplorer.core.data.remote.Result
+import id.web.dedekurniawan.moviexplorer.core.domain.model.MediaSourceInfo
 import id.web.dedekurniawan.moviexplorer.core.domain.model.QuickSearchBaseModel
 import id.web.dedekurniawan.moviexplorer.core.presentation.viewmodel.ModuleViewModel
 import id.web.dedekurniawan.moviexplorer.movie.domain.model.Movie
@@ -19,8 +20,9 @@ import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
 
-class MovieViewModel(private val useCase: MovieUseCase): ModuleViewModel<Movie>() {
+class MovieViewModel(useCase: MovieUseCase): ModuleViewModel<Movie>(useCase) {
     private val _quickSearchResult = MutableStateFlow("")
+
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     override val quickSearchResult: LiveData<Result<List<QuickSearchBaseModel>>> = _quickSearchResult
         .debounce(300)
@@ -34,9 +36,6 @@ class MovieViewModel(private val useCase: MovieUseCase): ModuleViewModel<Movie>(
         .flatMapConcat { it }
         .asLiveData()
 
-    private val _listResult = MediatorLiveData<Result<List<Movie>>>()
-    override val listResult: LiveData<Result<List<Movie>>> = _listResult
-
     private val _result = MediatorLiveData<Result<Movie>>()
     val result: LiveData<Result<Movie>> = _result
 
@@ -48,16 +47,16 @@ class MovieViewModel(private val useCase: MovieUseCase): ModuleViewModel<Movie>(
 
     override fun search(query: String){
         viewModelScope.launch {
-            _listResult.addSource(useCase.search(query).asLiveData()){
-                _listResult.value = it
+            localListResult.addSource(useCase.search(query).asLiveData()){
+                localListResult.value = it
             }
         }
     }
 
     override fun retrieveTrending(){
         viewModelScope.launch {
-            _listResult.addSource(useCase.retrieveTrending().asLiveData()){
-                _listResult.value = it
+            localListResult.addSource(useCase.retrieveTrending().asLiveData()){
+                localListResult.value = it
             }
         }
     }
@@ -66,6 +65,28 @@ class MovieViewModel(private val useCase: MovieUseCase): ModuleViewModel<Movie>(
         viewModelScope.launch {
             _result.addSource(useCase.retrieveDetail(movieId).asLiveData()){
                 _result.value = it
+            }
+        }
+    }
+
+    private val _mediaResult = MediatorLiveData<Result<List<MediaSourceInfo>>>()
+    val mediaResult: LiveData<Result<List<MediaSourceInfo>>> = _mediaResult
+
+    fun retrieveMovieImages(movieId: Int){
+        viewModelScope.launch {
+            _mediaResult.addSource((useCase as MovieUseCase).retrieveMovieImages(movieId).asLiveData()){
+                _mediaResult.value = it
+            }
+        }
+    }
+
+    private val _youtubeResult = MediatorLiveData<Result<List<MediaSourceInfo>>>()
+    val youtubeResult: LiveData<Result<List<MediaSourceInfo>>> = _youtubeResult
+
+    fun retrieveMovieVideos(movieId: Int){
+        viewModelScope.launch {
+            _youtubeResult.addSource((useCase as MovieUseCase).retrieveMovieVideos(movieId).asLiveData()){
+                _youtubeResult.value = it
             }
         }
     }

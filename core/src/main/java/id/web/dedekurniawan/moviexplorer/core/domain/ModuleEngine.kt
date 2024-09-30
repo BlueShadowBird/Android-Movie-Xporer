@@ -14,6 +14,9 @@ class ModuleEngine{
         moduleElementMap[moduleElement.name] = moduleElement
         return this
     }
+    interface ModuleElementProvider {
+        fun getModuleElement(): ModuleElement
+    }
 }
 
 abstract class ModuleElement(val moduleUseCase: ModuleUseCase<*>) {
@@ -29,6 +32,11 @@ abstract class ModuleElement(val moduleUseCase: ModuleUseCase<*>) {
         suspend fun search(query: String): Flow<Result<List<T>>>
         suspend fun retrieveTrending(): Flow<Result<List<T>>>
         suspend fun retrieveDetail(itemId: Int): Flow<Result<T>>
+
+        fun getFavorites(): Flow<List<T>>
+        fun isFavorite(moduleItemId: Int): Flow<Boolean>
+        fun saveFavorite(data: T)
+        fun deleteFavorite(data: T)
     }
 }
 

@@ -10,9 +10,9 @@ class Person(
     val name: String,
     val originalName: String? = null,
     val profilePath: String? = null,
-    val knownFor: List<String>,
+    val knownFor: List<String>? = null,
     val alsoKnownAs: List<String>? = null,
-    val gender: String,
+    val gender: String? = null,
     val mediaType: String? = null,
     val knownForDepartment: String? = null,
     val popularity: Float? = null,
@@ -22,7 +22,8 @@ class Person(
     val deathday: Date? = null,
     val imdbId: String? = null,
     val homepage: String? = null,
-    val adult: Boolean
+    val adult: Boolean = false,
+    var isFavorite: Boolean = false
     ): Parcelable{
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -47,6 +48,7 @@ class Person(
         if (imdbId != other.imdbId) return false
         if (homepage != other.homepage) return false
         if (adult != other.adult) return false
+        if (isFavorite != other.isFavorite) return false
 
         return true
     }
@@ -60,7 +62,7 @@ class Person(
         result = 31 * result + (alsoKnownAs?.hashCode() ?: 0)
         result = 31 * result + gender.hashCode()
         result = 31 * result + (mediaType?.hashCode() ?: 0)
-        result = 31 * result + knownForDepartment.hashCode()
+        result = 31 * result + (knownForDepartment?.hashCode() ?: 0)
         result = 31 * result + (popularity?.hashCode() ?: 0)
         result = 31 * result + (biography?.hashCode() ?: 0)
         result = 31 * result + (placeOfBirth?.hashCode() ?: 0)
@@ -69,6 +71,7 @@ class Person(
         result = 31 * result + (imdbId?.hashCode() ?: 0)
         result = 31 * result + (homepage?.hashCode() ?: 0)
         result = 31 * result + adult.hashCode()
+        result = 31 * result + isFavorite.hashCode()
         return result
     }
 }

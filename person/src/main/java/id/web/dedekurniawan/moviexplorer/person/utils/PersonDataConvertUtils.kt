@@ -1,7 +1,7 @@
 package id.web.dedekurniawan.moviexplorer.person.utils
 
 import id.web.dedekurniawan.moviexplorer.core.utils.toDate
-import id.web.dedekurniawan.moviexplorer.person.data.remote.PersonResponse
+import id.web.dedekurniawan.moviexplorer.person.data.remote.response.PersonResponse
 import id.web.dedekurniawan.moviexplorer.person.domain.model.Person
 import id.web.dedekurniawan.moviexplorer.person.domain.model.PersonQuickSearchModel
 

@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
 
-class PersonViewModel(private val useCase: PersonUseCase): ModuleViewModel<Person>() {
+class PersonViewModel(useCase: PersonUseCase): ModuleViewModel<Person>(useCase) {
     private val _quickSearchResult = MutableStateFlow("")
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     override val quickSearchResult: LiveData<Result<List<QuickSearchBaseModel>>> = _quickSearchResult
@@ -34,9 +34,6 @@ class PersonViewModel(private val useCase: PersonUseCase): ModuleViewModel<Perso
         .flatMapConcat { it }
         .asLiveData()
 
-    private val _listResult = MediatorLiveData<Result<List<Person>>>()
-    override val listResult: LiveData<Result<List<Person>>> = _listResult
-
     private val _result = MediatorLiveData<Result<Person>>()
     val result: LiveData<Result<Person>> = _result
 
@@ -48,16 +45,16 @@ class PersonViewModel(private val useCase: PersonUseCase): ModuleViewModel<Perso
 
     override fun search(query: String){
         viewModelScope.launch {
-            _listResult.addSource(useCase.search(query).asLiveData()){
-                _listResult.value = it
+            localListResult.addSource(useCase.search(query).asLiveData()){
+                localListResult.value = it
             }
         }
     }
 
     override fun retrieveTrending(){
         viewModelScope.launch {
-            _listResult.addSource(useCase.retrieveTrending().asLiveData()){
-                _listResult.value = it
+            localListResult.addSource(useCase.retrieveTrending().asLiveData()){
+                localListResult.value = it
             }
         }
     }

@@ -27,7 +27,7 @@ class MovieXplorerApplication: com.google.android.play.core.splitcompat.SplitCom
                     appKoinModule
                 ).apply {
                     if(isInstalled(applicationContext, KEY_PERSON_MODULE)){
-                        val koinModuleProvider = Class.forName("id.web.dedekurniawan.moviexplorer.person.data.di.PersonModuleProvider").getDeclaredConstructor().newInstance() as KoinModuleProvider
+                        val koinModuleProvider = Class.forName("id.web.dedekurniawan.moviexplorer.person.data.di.PersonKoinModuleProvider").getDeclaredConstructor().newInstance() as KoinModuleProvider
                         add(koinModuleProvider.getModule())
                     }
                 }
