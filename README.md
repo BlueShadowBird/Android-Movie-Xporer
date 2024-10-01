@@ -11,7 +11,6 @@ Movie Xplorer is an Android application that allows users to search and retrieve
 - Movie Module (Containing movie module features)
 
 ## Tech-Stack
-
 This project is built using the following technologies:
 
 ### Language:
@@ -24,47 +23,58 @@ This project is built using the following technologies:
 - Dependency Injection: Koin
 
 ### Design Patterns:
-- MVVM
-- Repository
-
-### User Interface:
-- Custom Views
-- View Binding
-- SwipeRefreshLayout
+- MVVM (Model-View-ViewModel)
+- Repository Pattern (for offline/online data management)
 
 ### Networking:
-- Retrofit
+- Retrofit (HTTP client)
 
-### Concurrency:
-- Data Flow: Coroutine Flow
+### User Interface:
+- Android Views (XML-based layouts)
+- SwipeRefreshLayout (for refreshable content)
+- View Binding (for efficient view handling)
+- ViewPager2 (for swipeable views)
+- Lottie (for animations)
 
-### Architecture:
-- Clean Architecture
-
-### Authentication and Authorization:
-- Android OS Authentication (PIN, Password, Biometric, etc.)
-
-### Modularization:
-- Dynamic Feature
-
-### Security:
-- Obfuscation
+### Splash Screens:
+- AndroidX SplashScreen API
 
 ### Media:
-- Image Loader: Glide
-- Video Player (Future)
+- Glide (for image loading)
+- ExoPlayer (for media playback)
+- YouTube Player (for YouTube video integration)
 
-### User Interface Components:
-- Shared Preferences
+### Database:
+- Room Database (for local data storage)
+- Preference API (for lightweight key-value storage using SharedPreferences)
 
-### Offline/Online Processing:
-- Repository pattern for offline/online processing (future)
+### Concurrency:
+- Coroutine Flow (for reactive data flow)
+  
+### Authentication and Authorization:
+- Biometric Authentication (PIN, Password, Fingerprint, etc.)
 
-### Widgets (Future)
+### Ad Integration:
+- AdMob (Google Play Services Ads)
 
-### Webview (Future)
+### Modularization:
+- Dynamic Feature Delivery (Play Core)
 
-### Splash Screens
+### Architecture:
+- Clean Architecture (separating data, domain, and presentation layers)
+
+### Security:
+- Obfuscation (minification and shrinking of code)
+- Biometric Authentication (secure access)
+
+### Widgets:
+- Room Database (future for complex data-driven widgets)
+
+### Upcoming Features:
+- Pagination
+- Video Playback (enhanced)
+- SSL Pinning
+- Shared Preferences & Database Encryption
 
 ## Installation
 
@@ -112,8 +122,10 @@ The project is organized into the following structure:
 - Implement pagination.
 - Implement encryption for shared Preferences and database
 - Implement SSL Pinning
-- Add favorite(tech-stack: Room Database)
-- Add swipeable image and trailer(tech-stack: media player)
+- Webview (open outsource web)
+- Widgets
+- Repository Pattern (handles data from network and local sources)
+- Add Series Feature
 
 ## Contributing
 
